@@ -60,11 +60,11 @@
         .stat-box { background: #ffffff; padding: 20px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); text-align: center; width: 180px; border-bottom: 4px solid var(--accent-green); }
         .stat-box h3 { font-size: 1.8rem; color: var(--accent-green); font-family: 'Arial Black', sans-serif; }
 
-        /* Section Title */
+        /* Section */
         .section { padding: 80px 5% 40px; text-align: center; }
         .section h2 { font-size: 16px; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 40px; color: var(--accent-green); }
 
-        /* Product Grid */
+        /* Grid */
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 30px; }
         .product-card { text-align: left; background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
         .product-card img { width: 100%; height: 300px; object-fit: cover; }
@@ -72,15 +72,16 @@
 
         /* Feedback Slider */
         .feedback-section { padding: 80px 5%; background: #fdfdfd; text-align: center; overflow: hidden; }
-        .feedback-container { max-width: 600px; margin: 0 auto; overflow: hidden; position: relative; min-height: 200px; }
+        .feedback-container { max-width: 600px; margin: 0 auto; overflow: hidden; position: relative; min-height: 220px; }
         .feedback-slider { display: flex; transition: transform 0.5s ease-in-out; width: 100%; }
         .feedback-slide { min-width: 100%; box-sizing: border-box; padding: 10px; }
-        .feedback-card { background: #fff; padding: 30px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); border: 1px solid #eee; }
+        .feedback-card { background: #fff; padding: 30px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); border: 1px solid #eee; height: 100%; }
+        
         .feedback-form-container { max-width: 500px; margin: 40px auto; padding: 25px; background: #f9f9f9; border-radius: 12px; border: 1px solid #eee; text-align: left; }
         .feedback-form-container input, .feedback-form-container select, .feedback-form-container textarea { width: 100%; padding: 12px; margin-bottom: 12px; border: 1px solid #ddd; border-radius: 8px; font-family: inherit; }
         .btn-post { width: 100%; padding: 15px; background: var(--accent-green); color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; }
 
-        /* Modal Inquiry */
+        /* Modal */
         .modal { display: none; position: fixed; z-index: 10000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); backdrop-filter: blur(5px); }
         .modal-content { background: #fff; margin: 5% auto; padding: 30px; border-radius: 15px; width: 90%; max-width: 400px; position: relative; }
         .close-btn { position: absolute; right: 20px; top: 15px; font-size: 25px; cursor: pointer; }
@@ -146,8 +147,7 @@
 <section class="feedback-section">
     <h2>Customer Feedback</h2>
     <div class="feedback-container">
-        <div id="feedbackSlider" class="feedback-slider">
-            </div>
+        <div id="feedbackSlider" class="feedback-slider"></div>
     </div>
 
     <div class="feedback-form-container">
@@ -198,7 +198,6 @@
 </footer>
 
 <script>
-    // Variables
     const modal = document.getElementById("inquiryModal");
     const openBtn = document.getElementById("openInquiry");
     const closeBtn = document.getElementById("closeModal");
@@ -206,7 +205,7 @@
     const fbSlider = document.getElementById("feedbackSlider");
     let currentIndex = 0;
 
-    // 1. WhatsApp Inquiry Logic
+    // Inquiry Logic
     let count = parseInt(localStorage.getItem('inquiryCount')) || 500;
     countDisplay.innerText = count + "+";
 
@@ -221,22 +220,19 @@
         const city = document.getElementById("userCity").value;
         const prod = document.getElementById("userProduct").value;
         const msg = document.getElementById("userMessage").value;
-
         const text = `*Inquiry from CeylonAgro Website*%0A%0A*Name:* ${name}%0A*City:* ${city}%0A*Product:* ${prod}%0A*Message:* ${msg}`;
         
         count++;
         localStorage.setItem('inquiryCount', count);
         countDisplay.innerText = count + "+";
-
         window.open(`https://wa.me/${myNumber}?text=${text}`, '_blank');
         modal.style.display = "none";
         this.reset();
     }
 
-  function renderFeedbacks() {
-        // LocalStorage එකේ මුකුත් නැත්නම් Default දත්ත ටිකක් පෙන්නන්න
+    // Feedback Rendering Logic
+    function renderFeedbacks() {
         let reviews = JSON.parse(localStorage.getItem('ceylonAgroReviews'));
-        
         if (!reviews || reviews.length === 0) {
             reviews = [
                 { name: "Kamal Perera", rating: "5", comment: "ඉතාමත් හොඳ සේවාවක්! පැළ නිරෝගීව ලැබුණා." },
@@ -245,12 +241,9 @@
             ];
         }
 
-        fbSlider.innerHTML = ''; // කලින් තියෙන ඒවා Clear කරන්න
-        
+        fbSlider.innerHTML = '';
         reviews.forEach(rev => {
             const stars = "★".repeat(parseInt(rev.rating)) + "☆".repeat(5 - parseInt(rev.rating));
-            
-            // Slide එකක් ඇතුළේ ලස්සනට Card එක දාන්න
             const slideDiv = document.createElement('div');
             slideDiv.className = 'feedback-slide';
             slideDiv.innerHTML = `
@@ -258,15 +251,43 @@
                     <div style="color:#ffcc00; font-size:1.2rem; margin-bottom:10px;">${stars}</div>
                     <p style="font-size: 14px; font-style: italic; color: #555; margin-bottom: 10px;">"${rev.comment}"</p>
                     <div style="font-weight: bold; font-size: 12px; color: #1a4332;">- ${rev.name}</div>
-                </div>
-            `;
+                </div>`;
             fbSlider.appendChild(slideDiv);
         });
-        
-        // Slider එක මුල සිට පටන් ගන්න
         currentIndex = 0;
         fbSlider.style.transform = `translateX(0%)`;
     }
+
+    // Auto Slide
+    function startAutoSlide() {
+        setInterval(() => {
+            const slides = document.querySelectorAll('.feedback-slide');
+            if (slides.length > 1) {
+                currentIndex = (currentIndex + 1) % slides.length;
+                fbSlider.style.transform = `translateX(-${currentIndex * 100}%)`;
+            }
+        }, 4000);
+    }
+
+    document.getElementById('customerFeedbackForm').onsubmit = function(e) {
+        e.preventDefault();
+        let reviews = JSON.parse(localStorage.getItem('ceylonAgroReviews')) || [];
+        reviews.unshift({
+            name: document.getElementById('fbName').value,
+            rating: document.getElementById('fbRating').value,
+            comment: document.getElementById('fbComment').value
+        });
+        localStorage.setItem('ceylonAgroReviews', JSON.stringify(reviews));
+        this.reset();
+        renderFeedbacks();
+        alert("ස්තුතියි! ඔබේ අදහස ඇතුළත් කළා.");
+    };
+
+    // Initialize on Load
+    window.onload = function() {
+        renderFeedbacks();
+        startAutoSlide();
+    };
 </script>
 
 </body>
