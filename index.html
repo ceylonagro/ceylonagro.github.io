@@ -4,289 +4,205 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CeylonAgro | Pure & Natural</title>
-   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-<style>
-    :root {
-        --bg-color: #ffffff;
-        --text-color: #1a1a1a;
-        --muted-text: #777777;
-        --accent-green: #2d5a27;
-        --border-color: #f5f5f5;
-    }
-
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    <script>
-    const modal = document.getElementById("registerModal");
-    const regBtn = document.querySelector(".btn-register");
-    const closeBtn = document.querySelector(".close-btn");
-
-    // Register බටන් එක එබුවම Modal එක පෙන්වන්න
-    regBtn.onclick = function() {
-        modal.style.display = "block";
-    }
-
-    // X සලකුණ එබුවම වහන්න
-    closeBtn.onclick = function() {
-        modal.style.display = "none";
-    }
-
-    // පිටත ක්ලික් කළොත් වහන්න
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #1a1a1a;
+            --muted-text: #777777;
+            --accent-green: #1a4332;
+            --border-color: #f5f5f5;
         }
-    }
-</script>
-    body { 
-        font-family: 'Inter', sans-serif; 
-        background: var(--bg-color); 
-        color: var(--text-color); 
-        line-height: 1.8;
-        -webkit-font-smoothing: antialiased;
-    }
 
-    /* Navigation - Page Name එක ලොකු කර Bold කළා */
-    nav {
-        display: flex; justify-content: space-between; align-items: center;
-        padding: 30px 10%; background: #fff; border-bottom: 1px solid var(--border-color);
-        position: sticky; top: 0; z-index: 1000;
-    }
-.logo-link {
-    display: flex;
-    align-items: center; /* ලෝගෝ එක සහ අකුරු එකම මට්ටමකට ගන්න */
-    text-decoration: none;
-    gap: 15px; /* ලෝගෝ එක සහ අකුරු අතර පරතරය */
-}
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-.logo-img {
-    height: 70px; /* ලෝගෝ එකේ උස */
-    width: auto;
-}
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: var(--bg-color); 
+            color: var(--text-color); 
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+        }
 
-.logo-text {
-    font-size: 2.2rem; /* අකුරු වල ප්‍රමාණය (ඔයාට ඕන විදිහට වැඩි කරන්න) */
-    font-weight: 800; /* අකුරු තද කරන්න (Bold) */
-    color: #1a4332; /* ඔයාගේ ලෝගෝ එකේ තියෙන තද කොළ පාට */
-    letter-spacing: 2px; /* අකුරු අතර පරතරය */
-    font-family: 'Arial Black', sans-serif; /* ටිකක් කැපී පෙනෙන Font එකක් */
-}
-/* Navigation සැකසුම් */
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 5%;
-    background: #fff;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 5%;
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
 
-/* මැද මෙනු එක */
-.nav-links {
-    display: flex;
-    list-style: none;
-    gap: 30px;
-}
+        .logo-link {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            gap: 15px;
+        }
 
-.nav-links a {
-    text-decoration: none;
-    color: #333;
-    font-weight: 600;
-    font-size: 1.1rem;
-    transition: 0.3s;
-}
+        .logo-img {
+            height: 60px;
+            width: auto;
+        }
 
-.nav-links a:hover {
-    color: #1a4332; /* ඔයාගේ තද කොළ පාට */
-}
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--accent-green);
+            letter-spacing: 2px;
+            font-family: 'Arial Black', sans-serif;
+        }
 
-/* Login & Register බටන් */
-.nav-auth {
-    display: flex;
-    gap: 15px;
-    align-items: center;
-}
-/* Modal (පසුබිම) */
-.modal {
-    display: none; /* පටන් ගන්නකොට පේන්නේ නැහැ */
-    position: fixed;
-    z-index: 2000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.6);
-    backdrop-filter: blur(5px);
-}
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
 
-/* Form එක තියෙන පෙට්ටිය */
-.modal-content {
-    background-color: #fff;
-    margin: 5% auto;
-    padding: 30px;
-    border-radius: 15px;
-    width: 90%;
-    max-width: 450px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-    position: relative;
-}
+        .nav-links a { 
+            text-decoration: none; 
+            color: var(--text-color); 
+            font-size: 11px; 
+            font-weight: 600; 
+            letter-spacing: 2px; 
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
 
-.close-btn {
-    position: absolute;
-    right: 20px;
-    top: 15px;
-    font-size: 28px;
-    cursor: pointer;
-}
+        .nav-links a:hover { color: var(--accent-green); }
 
-.input-group {
-    margin-bottom: 15px;
-    text-align: left;
-}
+        .nav-auth {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
 
-.input-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: 600;
-    color: #333;
-}
+        .btn-login {
+            text-decoration: none;
+            color: var(--accent-green);
+            font-weight: 600;
+            font-size: 14px;
+        }
 
-.input-group input {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    font-size: 1rem;
-}
+        .btn-register {
+            text-decoration: none;
+            background: var(--accent-green);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: 600;
+            font-size: 14px;
+            transition: 0.3s;
+        }
 
-.btn-submit {
-    width: 100%;
-    padding: 15px;
-    background: #1a4332;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 1.1rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-}
+        .btn-register:hover {
+            background: #2d5a45;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
 
-.btn-submit:hover {
-    background: #2d5a45;
-}
-.btn-login {
-    text-decoration: none;
-    color: #1a4332;
-    font-weight: 600;
-}
+        /* Modal Settings */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.6);
+            backdrop-filter: blur(5px);
+        }
 
-.btn-register {
-    text-decoration: none;
-    background: #1a4332;
-    color: #fff;
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-weight: 600;
-    transition: 0.3s;
-}
+        .modal-content {
+            background-color: #fff;
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 450px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            position: relative;
+            text-align: center;
+        }
 
-.btn-register:hover {
-    background: #2d5a45;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-}
+        .close-btn {
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            font-size: 28px;
+            cursor: pointer;
+            color: #777;
+        }
 
-/* Mobile Screen එකට ගැලපෙන්න */
-@media (max-width: 992px) {
-    .nav-links, .nav-auth {
-        display: none; /* Mobile එකේදී මෙනු එක හංගන්න (පස්සේ Hamburger menu එකක් හදමු) */
-    }
-}
-/* Mobile එකේදී සයිස් එක පොඩ්ඩක් අඩු කරන්න */
-@media (max-width: 768px) {
-    .logo-text {
-        font-size: 1.5rem;
-    }
-    .logo-img {
-        height: 50px;
-    }
-}
-    .nav-links a { 
-        text-decoration: none; 
-        color: var(--text-color); 
-        margin-left: 40px; 
-        font-size: 11px; 
-        font-weight: 600; 
-        letter-spacing: 2px; 
-        text-transform: uppercase;
-    }
+        .modal-content h2 { margin-bottom: 10px; color: var(--accent-green); }
+        .modal-content p { margin-bottom: 25px; color: var(--muted-text); font-size: 14px; }
 
-    /* Hero Section - ආයෙත් අර පරණ ලස්සන පෙනුම */
-    .hero {
-        height: 80vh;
-        background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('images/family-garden-planting-vegetation-together.jpg');
-        background-size: cover; background-position: center;
-        display: flex; flex-direction: column; justify-content: center; align-items: center;
-        color: white; text-align: center;
-    }
-    .hero h1 { 
-        font-size: 3.5rem; 
-        font-weight: 300; /* අකුරු සිහින් කළා ලස්සන වෙන්න */
-        letter-spacing: 12px; /* අර තිබුණු සුපිරි පරතරය ආයෙත් දැම්මා */
-        text-transform: uppercase;
-        margin-bottom: 20px;
-    }
-    .hero p { 
-        font-size: 10px; 
-        letter-spacing: 6px; 
-        text-transform: uppercase; 
-        opacity: 0.9;
-    }
+        .input-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
 
-    /* Product Section */
-    .section { padding: 100px 10%; text-align: center; }
-    .section h2 { 
-        font-size: 20px; 
-        font-weight: 400; 
-        letter-spacing: 7px; 
-        text-transform: uppercase; 
-        margin-bottom: 60px; 
-    }
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #333;
+            font-size: 13px;
+        }
 
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 50px; }
-    
-    .product-card { text-align: left; }
-    .product-card img { 
-        width: 100%; height: 420px; object-fit: cover; 
-        margin-bottom: 25px;
-        transition: 0.5s ease;
-    }
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+        }
 
-    .product-card h3 { 
-        font-size: 14px; 
-        font-weight: 700; /* නිෂ්පාදන නාමයන් පැහැදිලිව පේන්න Bold කළා */
-        letter-spacing: 1.5px; 
-        text-transform: uppercase;
-        margin-bottom: 10px;
-    }
-    .product-card p { 
-        font-size: 13px; 
-        color: var(--muted-text); 
-        font-weight: 400;
-    }
+        .btn-submit {
+            width: 100%;
+            padding: 15px;
+            background: var(--accent-green);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
 
-    footer { 
-        padding: 80px 10%; 
-        border-top: 1px solid var(--border-color); 
-        text-align: center; 
-        font-size: 10px; 
-        color: #999; 
-        letter-spacing: 3px; 
-        text-transform: uppercase;
-    }
-</style>
+        /* Hero & Sections */
+        .hero {
+            height: 70vh;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('images/family-garden-planting-vegetation-together.jpg');
+            background-size: cover; background-position: center;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            color: white; text-align: center;
+        }
+        .hero h1 { font-size: 3rem; font-weight: 300; letter-spacing: 10px; text-transform: uppercase; margin-bottom: 20px; }
+        .hero p { font-size: 12px; letter-spacing: 5px; text-transform: uppercase; opacity: 0.9; }
+
+        .section { padding: 80px 10%; text-align: center; }
+        .section h2 { font-size: 18px; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 50px; }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; }
+        .product-card { text-align: left; }
+        .product-card img { width: 100%; height: 350px; object-fit: cover; margin-bottom: 20px; border-radius: 5px; }
+        .product-card h3 { font-size: 14px; font-weight: 700; text-transform: uppercase; margin-bottom: 8px; }
+        .product-card p { font-size: 13px; color: var(--muted-text); }
+
+        footer { padding: 60px 10%; border-top: 1px solid var(--border-color); text-align: center; font-size: 10px; color: #999; letter-spacing: 2px; }
+
+        @media (max-width: 768px) {
+            .nav-links, .nav-auth { display: none; }
+            .logo-text { font-size: 1.4rem; }
+            .hero h1 { font-size: 2rem; }
+        }
+    </style>
 </head>
 <body>
 
@@ -307,7 +223,7 @@ nav {
 
     <div class="nav-auth">
         <a href="#" class="btn-login">Login</a>
-        <a href="#" class="btn-register">Register</a>
+        <a href="#" class="btn-register" id="openRegister">Register</a>
     </div>
 </nav>
 
@@ -319,73 +235,104 @@ nav {
 <section id="products" class="section" style="background-color: #fafafa;">
     <h2>Our Plant Collection</h2>
     <div class="grid">
-        
         <div class="product-card">
             <img src="images/hamban ouwak.jpeg" alt="Hamban Puwak">
             <h3>Hamban Puwak (හම්බන් පුවක්)</h3>
             <p>High-quality Hamban Puwak seedlings for commercial and home gardens.</p>
         </div>
-        
         <div class="product-card">
             <img src="images/rata puwak.jpeg" alt="Rata Puwak">
             <h3>Rata Puwak (රට පුවක්)</h3>
             <p>Premium Rata Puwak plants known for high yield and durability.</p>
         </div>
-
         <div class="product-card">
             <img src="images/Gammiris.jpeg" alt="Black Pepper">
             <h3>Black Pepper (ගම්මිරිස්)</h3>
             <p>Fast-growing, disease-resistant black pepper vines for spice cultivation.</p>
         </div>
-
         <div class="product-card">
             <img src="images/dehi.jpeg" alt="Lime Plants">
             <h3>Lime Plants (දෙහි පැළ)</h3>
             <p>Fresh and healthy lime seedlings ready for planting in your garden.</p>
         </div>
+    </div>
+</section>
+
 <div id="registerModal" class="modal">
     <div class="modal-content">
         <span class="close-btn">&times;</span>
-        <h2>Register with CeylonAgro</h2>
-        <p>Create an account to manage your orders</p>
+        <h2>Register</h2>
+        <p>Join CeylonAgro community today</p>
         
         <form id="registerForm">
             <div class="input-group">
                 <label>Full Name</label>
                 <input type="text" placeholder="Enter your name" required>
             </div>
-            
             <div class="input-group">
                 <label>City</label>
-                <input type="text" placeholder="Your City (e.g. Galle, Colombo)" required>
+                <input type="text" placeholder="Your City" required>
             </div>
-
             <div class="input-group">
                 <label>Contact Number</label>
                 <input type="tel" placeholder="07x xxxx xxx" required>
             </div>
-
             <div class="input-group">
                 <label>Email Address</label>
                 <input type="email" placeholder="example@mail.com" required>
             </div>
-
             <div class="input-group">
                 <label>Password</label>
                 <input type="password" placeholder="Create a password" required>
             </div>
-
             <button type="submit" class="btn-submit">Create Account</button>
         </form>
     </div>
 </div>
-    </div>
-</section>
 
 <footer id="contact">
     <p>CEYLONAGRO | GAMPOLA, SRI LANKA</p>
-    <p style="margin-top: 40px;">© 2026 CEYLONAGRO. ALL RIGHTS RESERVED.</p>
+    <p style="margin-top: 20px;">© 2026 CEYLONAGRO. ALL RIGHTS RESERVED.</p>
 </footer>
+
+<script>
+    // පූජාව: සියලුම HTML එලිමන්ට්ස් Load වුණාට පස්සේ ක්‍රියාත්මක වන්න
+    document.addEventListener('DOMContentLoaded', function() {
+        const modal = document.getElementById("registerModal");
+        const regBtn = document.getElementById("openRegister");
+        const closeBtn = document.querySelector(".close-btn");
+
+        // Register බටන් එක එබුවම
+        if(regBtn) {
+            regBtn.onclick = function(e) {
+                e.preventDefault();
+                modal.style.display = "block";
+            }
+        }
+
+        // X සලකුණ එබුවම
+        if(closeBtn) {
+            closeBtn.onclick = function() {
+                modal.style.display = "none";
+            }
+        }
+
+        // Modal එකෙන් පිටත ක්ලික් කළොත්
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        // Form එක Submit කරන විට (දැනට පණිවිඩයක් පමණක් පෙන්වයි)
+        const form = document.getElementById("registerForm");
+        form.onsubmit = function(e) {
+            e.preventDefault();
+            alert("Registration successful! (Demo Only)");
+            modal.style.display = "none";
+        }
+    });
+</script>
 
 </body>
 </html>
