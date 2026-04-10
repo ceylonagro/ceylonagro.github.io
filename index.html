@@ -30,10 +30,34 @@
         padding: 30px 10%; background: #fff; border-bottom: 1px solid var(--border-color);
         position: sticky; top: 0; z-index: 1000;
     }
-.logo img {
-    height: 70px; /* ඔයාට කැමති උසක් මෙතනට දෙන්න */
+.logo-link {
+    display: flex;
+    align-items: center; /* ලෝගෝ එක සහ අකුරු එකම මට්ටමකට ගන්න */
+    text-decoration: none;
+    gap: 15px; /* ලෝගෝ එක සහ අකුරු අතර පරතරය */
+}
+
+.logo-img {
+    height: 70px; /* ලෝගෝ එකේ උස */
     width: auto;
-    display: block;
+}
+
+.logo-text {
+    font-size: 2.2rem; /* අකුරු වල ප්‍රමාණය (ඔයාට ඕන විදිහට වැඩි කරන්න) */
+    font-weight: 800; /* අකුරු තද කරන්න (Bold) */
+    color: #1a4332; /* ඔයාගේ ලෝගෝ එකේ තියෙන තද කොළ පාට */
+    letter-spacing: 2px; /* අකුරු අතර පරතරය */
+    font-family: 'Arial Black', sans-serif; /* ටිකක් කැපී පෙනෙන Font එකක් */
+}
+
+/* Mobile එකේදී සයිස් එක පොඩ්ඩක් අඩු කරන්න */
+@media (max-width: 768px) {
+    .logo-text {
+        font-size: 1.5rem;
+    }
+    .logo-img {
+        height: 50px;
+    }
 }
     .nav-links a { 
         text-decoration: none; 
@@ -113,9 +137,10 @@
 <body>
 
 <nav>
-<div class="logo">
-    <a href="index.html">
-        <img src="images/Logoweb.png" alt="CeylonAgro Logo">
+<div class="logo-container">
+    <a href="index.html" class="logo-link">
+        <img src="images/Logoweb.png" alt="CeylonAgro Logo" class="logo-img">
+        <span class="logo-text">CEYLONAGRO</span>
     </a>
 </div>
 </nav>
