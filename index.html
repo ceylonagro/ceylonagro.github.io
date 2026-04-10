@@ -93,6 +93,14 @@
         .input-group input, .input-group select, .input-group textarea { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-family: inherit; }
         .btn-send { width: 100%; padding: 15px; background: #25D366; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; }
 
+        /* Feedback Section */
+        .feedback-section { padding: 80px 10%; background: #fdfdfd; text-align: center; }
+        .feedback-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px; }
+        .feedback-card { background: #fff; padding: 30px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border: 1px solid #eee; transition: 0.3s; }
+        .stars { color: #ffcc00; font-size: 1.2rem; margin-bottom: 15px; }
+        .feedback-text { font-size: 14px; color: #555; font-style: italic; margin-bottom: 20px; }
+        .customer-name { font-weight: 700; font-size: 13px; text-transform: uppercase; color: var(--accent-green); }
+        
         @media (max-width: 768px) {
             .nav-links { display: none; }
             .stat-box { width: 45%; }
@@ -171,7 +179,28 @@
         </div>
     </div>
 </section>
-
+</div> </section> <section class="feedback-section">
+    <h2>Customer Feedback</h2>
+    <div class="feedback-grid">
+        <div class="feedback-card">
+            <div class="stars">★★★★★</div>
+            <p class="feedback-text">"ගම්පොළින් ගත්ත හොඳම පුවක් පැළ ටික. සති දෙකකින් ලස්සනට හැදෙන්න ගත්තා. බොහොම ස්තූතියි CeylonAgro!"</p>
+            <div class="customer-name">- Kamal Perera</div>
+        </div>
+        <div class="feedback-card">
+            <div class="stars">★★★★★</div>
+            <p class="feedback-text">"I ordered Black Pepper vines. They were delivered in perfect condition. Highly recommend for any home gardener."</p>
+            <div class="customer-name">- Sarah Munasinghe</div>
+        </div>
+        <div class="feedback-card">
+            <div class="stars">★★★★★</div>
+            <p class="feedback-text">"දෙහි පැළ ටික නියමයි. WhatsApp එකෙන් අහපු හැම දේකටම ඉක්මනින් උත්තර ලැබුණා. සර්විස් එක සුපිරි!"</p>
+            <div class="customer-name">- Nuwan Silva</div>
+        </div>
+    </div>
+</section>
+<section id="about" class="section">
+    <h2>Our Story</h2>
 <div id="inquiryModal" class="modal">
     <div class="modal-content">
         <span class="close-btn" id="closeModal">&times;</span>
