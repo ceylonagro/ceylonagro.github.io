@@ -15,58 +15,7 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-.stats-container {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    padding: 40px 10%;
-    background: #fff;
-    margin-top: -50px; /* Hero එක උඩට පොඩ්ඩක් යන විදිහට */
-    position: relative;
-    z-index: 10;
-}
 
-.stat-box {
-    background: #ffffff;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-    text-align: center;
-    min-width: 200px;
-    border-bottom: 4px solid var(--accent-green);
-    transition: 0.3s;
-}
-
-.stat-box:hover {
-    transform: translateY(-10px);
-}
-
-.stat-box h3 {
-    font-size: 2.5rem;
-    color: var(--accent-green);
-    margin-bottom: 5px;
-    font-family: 'Arial Black', sans-serif;
-}
-
-.stat-box p {
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    color: var(--muted-text);
-    font-weight: 600;
-}
-
-/* Mobile Screen */
-@media (max-width: 768px) {
-    .stats-container {
-        flex-direction: column;
-        margin-top: 20px;
-        padding: 20px;
-    }
-    .stat-box {
-        min-width: unset;
-    }
-}
         body { 
             font-family: 'Inter', sans-serif; 
             background: var(--bg-color); 
@@ -155,78 +104,7 @@
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
 
-        /* Modal Settings */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 2000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.6);
-            backdrop-filter: blur(5px);
-        }
-
-        .modal-content {
-            background-color: #fff;
-            margin: 5% auto;
-            padding: 30px;
-            border-radius: 15px;
-            width: 90%;
-            max-width: 450px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-            position: relative;
-            text-align: center;
-        }
-
-        .close-btn {
-            position: absolute;
-            right: 20px;
-            top: 15px;
-            font-size: 28px;
-            cursor: pointer;
-            color: #777;
-        }
-
-        .modal-content h2 { margin-bottom: 10px; color: var(--accent-green); }
-        .modal-content p { margin-bottom: 25px; color: var(--muted-text); font-size: 14px; }
-
-        .input-group {
-            margin-bottom: 15px;
-            text-align: left;
-        }
-
-        .input-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: 600;
-            color: #333;
-            font-size: 13px;
-        }
-
-        .input-group input {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 14px;
-        }
-
-        .btn-submit {
-            width: 100%;
-            padding: 15px;
-            background: var(--accent-green);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-
-        /* Hero & Sections */
+        /* Hero Section */
         .hero {
             height: 70vh;
             background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('images/family-garden-planting-vegetation-together.jpg');
@@ -237,7 +115,48 @@
         .hero h1 { font-size: 3rem; font-weight: 300; letter-spacing: 10px; text-transform: uppercase; margin-bottom: 20px; }
         .hero p { font-size: 12px; letter-spacing: 5px; text-transform: uppercase; opacity: 0.9; }
 
-        .section { padding: 80px 10%; text-align: center; }
+        /* Statistics Boxes */
+        .stats-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            padding: 0 10%;
+            margin-top: -60px; /* Hero එක උඩට යන විදිහට */
+            position: relative;
+            z-index: 10;
+        }
+
+        .stat-box {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            flex: 1;
+            max-width: 250px;
+            border-bottom: 4px solid var(--accent-green);
+            transition: 0.3s ease;
+        }
+
+        .stat-box:hover { transform: translateY(-10px); }
+
+        .stat-box h3 {
+            font-size: 2.2rem;
+            color: var(--accent-green);
+            margin-bottom: 5px;
+            font-family: 'Arial Black', sans-serif;
+        }
+
+        .stat-box p {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--muted-text);
+            font-weight: 700;
+        }
+
+        /* Product Section */
+        .section { padding: 100px 10% 80px; text-align: center; }
         .section h2 { font-size: 18px; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 50px; }
 
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; }
@@ -245,25 +164,47 @@
         .product-card img { width: 100%; height: 350px; object-fit: cover; margin-bottom: 20px; border-radius: 5px; }
         .product-card h3 { font-size: 14px; font-weight: 700; text-transform: uppercase; margin-bottom: 8px; }
         .product-card p { font-size: 13px; color: var(--muted-text); }
-<section class="stats-container">
-    <div class="stat-box">
-        <h3 class="counter">500+</h3>
-        <p>Happy Customers</p>
-    </div>
-    <div class="stat-box">
-        <h3 class="counter">20+</h3>
-        <p>Premium Products</p>
-    </div>
-    <div class="stat-box">
-        <h3 class="counter">1000+</h3>
-        <p>Plants Distributed</p>
-    </div>
-</section>
+
+        /* Modal Settings */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0; top: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.6);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 5% auto;
+            padding: 40px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 450px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            position: relative;
+            text-align: center;
+        }
+
+        .close-btn { position: absolute; right: 20px; top: 15px; font-size: 28px; cursor: pointer; color: #777; }
+        .modal-content h2 { margin-bottom: 10px; color: var(--accent-green); }
+        
+        .input-group { margin-bottom: 15px; text-align: left; }
+        .input-group label { display: block; margin-bottom: 5px; font-weight: 600; font-size: 13px; }
+        .input-group input { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; }
+
+        .btn-submit {
+            width: 100%; padding: 15px; background: var(--accent-green);
+            color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer;
+        }
+
         footer { padding: 60px 10%; border-top: 1px solid var(--border-color); text-align: center; font-size: 10px; color: #999; letter-spacing: 2px; }
 
         @media (max-width: 768px) {
             .nav-links, .nav-auth { display: none; }
-            .logo-text { font-size: 1.4rem; }
+            .stats-container { flex-direction: column; align-items: center; margin-top: 20px; gap: 15px; }
+            .stat-box { width: 100%; max-width: 300px; }
             .hero h1 { font-size: 2rem; }
         }
     </style>
@@ -277,14 +218,12 @@
             <span class="logo-text">CEYLONAGRO</span>
         </a>
     </div>
-
     <ul class="nav-links">
         <li><a href="#products">Products</a></li>
         <li><a href="#plants">Plants</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#contact">Contact</a></li>
     </ul>
-
     <div class="nav-auth">
         <a href="#" class="btn-login">Login</a>
         <a href="#" class="btn-register" id="openRegister">Register</a>
@@ -294,6 +233,21 @@
 <section class="hero">
     <h1>NATURAL HARVEST</h1>
     <p>Premium Sri Lankan Plantation & Products</p>
+</section>
+
+<section class="stats-container">
+    <div class="stat-box">
+        <h3>500+</h3>
+        <p>Happy Customers</p>
+    </div>
+    <div class="stat-box">
+        <h3>20+</h3>
+        <p>Premium Products</p>
+    </div>
+    <div class="stat-box">
+        <h3>1000+</h3>
+        <p>Plants Distributed</p>
+    </div>
 </section>
 
 <section id="products" class="section" style="background-color: #fafafa;">
@@ -327,28 +281,12 @@
         <span class="close-btn">&times;</span>
         <h2>Register</h2>
         <p>Join CeylonAgro community today</p>
-        
         <form id="registerForm">
-            <div class="input-group">
-                <label>Full Name</label>
-                <input type="text" placeholder="Enter your name" required>
-            </div>
-            <div class="input-group">
-                <label>City</label>
-                <input type="text" placeholder="Your City" required>
-            </div>
-            <div class="input-group">
-                <label>Contact Number</label>
-                <input type="tel" placeholder="07x xxxx xxx" required>
-            </div>
-            <div class="input-group">
-                <label>Email Address</label>
-                <input type="email" placeholder="example@mail.com" required>
-            </div>
-            <div class="input-group">
-                <label>Password</label>
-                <input type="password" placeholder="Create a password" required>
-            </div>
+            <div class="input-group"><label>Full Name</label><input type="text" placeholder="Enter name" required></div>
+            <div class="input-group"><label>City</label><input type="text" placeholder="Your City" required></div>
+            <div class="input-group"><label>Contact Number</label><input type="tel" placeholder="07x xxxx xxx" required></div>
+            <div class="input-group"><label>Email Address</label><input type="email" placeholder="example@mail.com" required></div>
+            <div class="input-group"><label>Password</label><input type="password" placeholder="Password" required></div>
             <button type="submit" class="btn-submit">Create Account</button>
         </form>
     </div>
@@ -360,39 +298,28 @@
 </footer>
 
 <script>
-    // පූජාව: සියලුම HTML එලිමන්ට්ස් Load වුණාට පස්සේ ක්‍රියාත්මක වන්න
     document.addEventListener('DOMContentLoaded', function() {
         const modal = document.getElementById("registerModal");
         const regBtn = document.getElementById("openRegister");
         const closeBtn = document.querySelector(".close-btn");
 
-        // Register බටන් එක එබුවම
         if(regBtn) {
             regBtn.onclick = function(e) {
                 e.preventDefault();
                 modal.style.display = "block";
             }
         }
-
-        // X සලකුණ එබුවම
         if(closeBtn) {
-            closeBtn.onclick = function() {
-                modal.style.display = "none";
-            }
+            closeBtn.onclick = function() { modal.style.display = "none"; }
         }
-
-        // Modal එකෙන් පිටත ක්ලික් කළොත්
         window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
+            if (event.target == modal) { modal.style.display = "none"; }
         }
-
-        // Form එක Submit කරන විට (දැනට පණිවිඩයක් පමණක් පෙන්වයි)
+        
         const form = document.getElementById("registerForm");
         form.onsubmit = function(e) {
             e.preventDefault();
-            alert("Registration successful! (Demo Only)");
+            alert("Registration logic will be added with Firebase!");
             modal.style.display = "none";
         }
     });
