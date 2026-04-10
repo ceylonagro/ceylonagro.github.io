@@ -22,7 +22,6 @@
             color: var(--text-color); 
             line-height: 1.8;
             scroll-behavior: smooth;
-            overflow-x: hidden;
         }
 
         /* Navigation */
@@ -37,15 +36,14 @@
         .logo-text { font-size: 1.5rem; font-weight: 800; color: var(--accent-green); letter-spacing: 1px; font-family: 'Arial Black', sans-serif; }
 
         .nav-links { display: flex; list-style: none; gap: 20px; }
-        .nav-links a { text-decoration: none; color: var(--text-color); font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+        .nav-links a { text-decoration: none; color: var(--text-color); font-size: 10px; font-weight: 700; text-transform: uppercase; }
 
         /* Floating Button */
         .floating-btn {
             position: fixed; bottom: 30px; right: 30px; background: #25D366; color: white;
             padding: 15px 25px; border-radius: 50px; text-decoration: none; font-weight: bold;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2); z-index: 9999; display: flex; align-items: center; gap: 10px; transition: 0.3s;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2); z-index: 9999; display: flex; align-items: center; gap: 10px;
         }
-        .floating-btn:hover { transform: scale(1.05); }
 
         /* Hero */
         .hero {
@@ -53,52 +51,41 @@
             background-size: cover; background-position: center; display: flex; flex-direction: column; 
             justify-content: center; align-items: center; color: white; text-align: center; padding: 20px;
         }
-        .hero h1 { font-size: clamp(1.8rem, 5vw, 3rem); letter-spacing: 5px; text-transform: uppercase; margin-bottom: 15px; }
+        .hero h1 { font-size: clamp(1.8rem, 5vw, 3rem); letter-spacing: 5px; text-transform: uppercase; }
 
         /* Stats */
         .stats-container { display: flex; justify-content: center; gap: 20px; padding: 0 5%; margin-top: -50px; position: relative; z-index: 10; flex-wrap: wrap; }
         .stat-box { background: #ffffff; padding: 20px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); text-align: center; width: 180px; border-bottom: 4px solid var(--accent-green); }
-        .stat-box h3 { font-size: 1.8rem; color: var(--accent-green); font-family: 'Arial Black', sans-serif; }
 
-        /* Product Grid & Card */
+        /* Grid */
         .section { padding: 80px 5% 40px; text-align: center; }
-        .section h2 { font-size: 16px; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 40px; color: var(--accent-green); }
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 30px; }
-        
         .product-card { 
-            text-align: left; background: #fff; border-radius: 10px; overflow: hidden; 
+            background: #fff; border-radius: 10px; overflow: hidden; 
             box-shadow: 0 5px 15px rgba(0,0,0,0.05); cursor: pointer; transition: 0.3s;
-            position: relative;
         }
-        .product-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .product-card:hover { transform: translateY(-5px); }
         .product-card img { width: 100%; height: 300px; object-fit: cover; }
-        .product-card-info { padding: 20px; }
-        .view-guide { font-size: 11px; color: var(--accent-green); font-weight: bold; text-transform: uppercase; margin-top: 10px; display: block; }
+        .product-card-info { padding: 20px; text-align: left; }
 
-        /* Feedback Slider */
-        .feedback-section { padding: 80px 5%; background: #fdfdfd; text-align: center; overflow: hidden; }
-        .feedback-container { max-width: 600px; margin: 0 auto; overflow: hidden; position: relative; min-height: 220px; }
-        .feedback-slider { display: flex; transition: transform 0.5s ease-in-out; width: 100%; }
-        .feedback-slide { min-width: 100%; box-sizing: border-box; padding: 10px; }
-        .feedback-card { background: #fff; padding: 30px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); border: 1px solid #eee; }
+        /* Guide Modal - Very Detailed */
+        .modal { display: none; position: fixed; z-index: 10000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); overflow-y: auto; }
+        .modal-content { background: #fff; margin: 40px auto; padding: 30px; border-radius: 20px; width: 95%; max-width: 600px; position: relative; }
+        .close-btn { position: absolute; right: 20px; top: 15px; font-size: 35px; cursor: pointer; color: #333; line-height: 1; }
+        
+        .guide-header { text-align: center; margin-bottom: 25px; }
+        .guide-img-large { width: 100%; height: 250px; object-fit: cover; border-radius: 15px; margin-bottom: 15px; border: 3px solid var(--accent-green); }
+        
+        .guide-body { text-align: left; }
+        .guide-section { margin-bottom: 20px; padding: 15px; background: #f9f9f9; border-radius: 12px; }
+        .guide-section h4 { color: var(--accent-green); display: flex; align-items: center; gap: 8px; margin-bottom: 8px; font-size: 16px; }
+        .guide-section p { font-size: 13.5px; color: #444; line-height: 1.6; }
 
-        /* Split Screen Map */
+        /* Map Split Section */
         .contact-split { display: flex; flex-wrap: wrap; background: #fff; margin-top: 50px; min-height: 450px; }
-        .contact-info-side { flex: 1; min-width: 300px; padding: 60px 5%; background: var(--accent-green); color: white; display: flex; flex-direction: column; justify-content: center; }
+        .contact-info-side { flex: 1; min-width: 300px; padding: 60px 5%; background: var(--accent-green); color: white; }
         .map-side { flex: 1; min-width: 300px; min-height: 400px; }
-        .map-side iframe { width: 100%; height: 100%; border: none; filter: grayscale(0.1); }
-
-        /* Modals (General) */
-        .modal { display: none; position: fixed; z-index: 10000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); backdrop-filter: blur(8px); overflow-y: auto; }
-        .modal-content { background: #fff; margin: 50px auto; padding: 30px; border-radius: 20px; width: 90%; max-width: 500px; position: relative; animation: slideIn 0.3s ease-out; }
-        @keyframes slideIn { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-        .close-btn { position: absolute; right: 20px; top: 15px; font-size: 30px; cursor: pointer; color: #333; }
-
-        /* Plant Guide Style */
-        .guide-img { width: 100%; height: 200px; object-fit: cover; border-radius: 15px; margin-bottom: 20px; }
-        .guide-step { margin-bottom: 15px; border-left: 3px solid var(--accent-green); padding-left: 15px; }
-        .guide-step h4 { font-size: 14px; color: var(--accent-green); }
-        .guide-step p { font-size: 13px; color: #555; line-height: 1.4; }
+        .map-side iframe { width: 100%; height: 100%; border: none; }
 
         @media (max-width: 768px) {
             .nav-links { display: none; }
@@ -115,13 +102,12 @@
     </a>
     <ul class="nav-links">
         <li><a href="#plants">Plants</a></li>
-        <li><a href="#about">About</a></li>
         <li><a href="#contact">Contact</a></li>
     </ul>
 </nav>
 
-<a href="#" class="floating-btn" id="openInquiry">
-    <span>Inquire via WhatsApp</span>
+<a href="https://wa.me/94727782588" class="floating-btn" target="_blank">
+    <span>Chat on WhatsApp</span>
 </a>
 
 <section class="hero">
@@ -130,37 +116,37 @@
 </section>
 
 <section class="stats-container">
-    <div class="stat-box"><h3 id="customerCount">500</h3><p>Inquiries</p></div>
+    <div class="stat-box"><h3 id="customerCount">500+</h3><p>Inquiries</p></div>
     <div class="stat-box"><h3>20+</h3><p>Products</p></div>
     <div class="stat-box"><h3>1000+</h3><p>Plants</p></div>
 </section>
 
 <section id="plants" class="section">
     <h2>Our Plant Collection</h2>
-    <p style="font-size: 12px; margin-bottom: 30px; color: var(--muted-text);">පැළය හිටවන ආකාරය බැලීමට පින්තූරය මත Click කරන්න.</p>
+    <p style="font-size: 13px; color: #777; margin-bottom: 40px;">පැළය හිටවන ආකාරය සහ සත්කාර කිරීම් බැලීමට පින්තූරය මත Click කරන්න.</p>
     <div class="grid">
         <div class="product-card" onclick="openGuide('hamban')">
-            <img src="images/hamban ouwak.jpeg" alt="Puwak">
+            <img src="images/hamban ouwak.jpeg" alt="Hamban Puwak">
             <div class="product-card-info">
                 <h3>Hamban Puwak</h3>
                 <p>High-quality seedlings.</p>
-                <span class="view-guide">Click to see How to Plant →</span>
+                <span style="color: var(--accent-green); font-size: 11px; font-weight: bold;">VIEW PLANTING GUIDE →</span>
             </div>
         </div>
         <div class="product-card" onclick="openGuide('rata')">
-            <img src="images/rata puwak.jpeg" alt="Puwak">
+            <img src="images/rata puwak.jpeg" alt="Rata Puwak">
             <div class="product-card-info">
                 <h3>Rata Puwak</h3>
                 <p>Premium yield plants.</p>
-                <span class="view-guide">Click to see How to Plant →</span>
+                <span style="color: var(--accent-green); font-size: 11px; font-weight: bold;">VIEW PLANTING GUIDE →</span>
             </div>
         </div>
         <div class="product-card" onclick="openGuide('pepper')">
-            <img src="images/Gammiris.jpeg" alt="Pepper">
+            <img src="images/Gammiris.jpeg" alt="Black Pepper">
             <div class="product-card-info">
                 <h3>Black Pepper</h3>
                 <p>Fast-growing vines.</p>
-                <span class="view-guide">Click to see How to Plant →</span>
+                <span style="color: var(--accent-green); font-size: 11px; font-weight: bold;">VIEW PLANTING GUIDE →</span>
             </div>
         </div>
         <div class="product-card" onclick="openGuide('lime')">
@@ -168,7 +154,7 @@
             <div class="product-card-info">
                 <h3>Lime Plants</h3>
                 <p>Healthy lime seedlings.</p>
-                <span class="view-guide">Click to see How to Plant →</span>
+                <span style="color: var(--accent-green); font-size: 11px; font-weight: bold;">VIEW PLANTING GUIDE →</span>
             </div>
         </div>
     </div>
@@ -177,100 +163,64 @@
 <div id="guideModal" class="modal">
     <div class="modal-content">
         <span class="close-btn" onclick="closeGuide()">&times;</span>
-        <img id="guideImg" src="" class="guide-img">
-        <h3 id="guideTitle" style="color: var(--accent-green); margin-bottom: 20px;"></h3>
-        <div id="guideSteps"></div>
-        <button onclick="closeGuide()" style="width:100%; padding:12px; background:var(--accent-green); color:white; border:none; border-radius:10px; margin-top:20px; cursor:pointer; font-weight:bold;">I Got it!</button>
+        <div class="guide-header">
+            <img id="guideImg" src="" class="guide-img-large">
+            <h3 id="guideTitle" style="color: var(--accent-green); font-size: 22px;"></h3>
+        </div>
+        <div id="guideBody" class="guide-body">
+            </div>
+        <button onclick="closeGuide()" style="width:100%; padding:15px; background:var(--accent-green); color:white; border:none; border-radius:12px; margin-top:10px; cursor:pointer; font-weight:bold;">සම්පූර්ණයි</button>
     </div>
 </div>
-
-<section class="feedback-section">
-    <h2>Customer Feedback</h2>
-    <div class="feedback-container"><div id="feedbackSlider" class="feedback-slider"></div></div>
-</section>
 
 <section id="contact" class="contact-split">
     <div class="contact-info-side">
-        <h2>Visit Our Nursery</h2>
-        <div class="contact-details">
-            <p>Dematagolla, Wellawa, Kurunegala</p>
-            <p>+94 72 778 2588</p>
-        </div>
+        <h2 style="margin-bottom: 20px;">Contact Us</h2>
+        <p>📍 Dematagolla, Wellawa, Kurunegala</p>
+        <p>📞 +94 72 778 2588</p>
     </div>
     <div class="map-side">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3955.514603632906!2d80.38580837454848!3d7.554833292458923!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zN8KwMzMnMTkuNCJOIDgwwrAyMycxOC4xIkU!5e0!3m2!1sen!2slk!4v1712781440000"></iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3955.514605172238!2d80.3857861!3d7.5553889!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zN8KwMzMnMTkuNCJOIDgwwrAyMycxOC4xIkU!5e0!3m2!1sen!2slk!4v1712800000000!5m2!1sen!2slk"></iframe>
     </div>
 </section>
 
-<div id="inquiryModal" class="modal">
-    <div class="modal-content">
-        <span class="close-btn" id="closeModal">×</span>
-        <h3 style="margin-bottom: 20px;">Send Inquiry</h3>
-        <form id="inquiryForm">
-            <input type="text" id="userName" placeholder="Name" required style="width:100%; padding:10px; margin-bottom:10px; border-radius:8px; border:1px solid #ddd;">
-            <input type="text" id="userCity" placeholder="City" required style="width:100%; padding:10px; margin-bottom:10px; border-radius:8px; border:1px solid #ddd;">
-            <select id="userProduct" style="width:100%; padding:10px; margin-bottom:10px; border-radius:8px; border:1px solid #ddd;">
-                <option value="General">General Inquiry</option>
-                <option value="Puwak">Puwak Plants</option>
-                <option value="Pepper">Pepper Plants</option>
-            </select>
-            <textarea id="userMessage" placeholder="Message" style="width:100%; padding:10px; margin-bottom:10px; border-radius:8px; border:1px solid #ddd;"></textarea>
-            <button type="submit" style="width:100%; padding:15px; background:#25D366; color:white; border:none; border-radius:8px; font-weight:bold; cursor:pointer;">Chat on WhatsApp</button>
-        </form>
-    </div>
-</div>
-
 <script>
-    // 1. WhatsApp & Stats Logic
-    const countDisplay = document.getElementById("customerCount");
-    let count = parseInt(localStorage.getItem('inquiryCount')) || 500;
-    countDisplay.innerText = count + "+";
-
-    document.getElementById("openInquiry").onclick = (e) => { e.preventDefault(); document.getElementById("inquiryModal").style.display = "block"; }
-    document.getElementById("closeModal").onclick = () => { document.getElementById("inquiryModal").style.display = "none"; }
-
-    document.getElementById("inquiryForm").onsubmit = function(e) {
-        e.preventDefault();
-        const text = `*Inquiry from Website*%0A*Name:* ${document.getElementById("userName").value}%0A*Product:* ${document.getElementById("userProduct").value}`;
-        window.open(`https://wa.me/94727782588?text=${text}`, '_blank');
-        count++; localStorage.setItem('inquiryCount', count);
-        countDisplay.innerText = count + "+";
-        document.getElementById("inquiryModal").style.display = "none";
-    }
-
-    // 2. Plant Guide Logic
     const guides = {
         hamban: {
-            title: "Hamban Puwak Planting Guide",
+            title: "හම්බන් පුවක් සිටුවීමේ උපදෙස්",
             img: "images/hamban ouwak.jpeg",
-            steps: [
-                { h: "Step 1: Hole Prep", p: "අඩි 2x2 ප්‍රමාණයේ වළක් කපා මතුපිට පස් සහ කොම්පෝස්ට් පුරවන්න." },
-                { h: "Step 2: Planting", p: "පැළය මැදින් තබා පස් පුරවා තද කරන්න." },
-                { h: "Step 3: Care", p: "දිනකට දෙවරක් ජලය දමන්න. සෙවන ලබා දෙන්න." }
+            content: [
+                { h: "🌱 වළ සකස් කිරීම", p: "අඩි 2x2x2 ප්‍රමාණයේ වළක් කපා ගන්න. මතුපිට පස් සමඟ හොඳින් දිරාපත් වූ ගොම පොහොර හෝ කොම්පෝස්ට් මිශ්‍ර කර වළ පුරවන්න." },
+                { h: "☀️ හිරු එළිය සහ පරතරය", p: "ගස් දෙකක් අතර අඩි 8-10 ක පරතරයක් තබන්න. පැළයට මුල් කාලයේදී මඳ සෙවනක් ලබා දීම වැදගත්ය." },
+                { h: "💧 ජල සම්පාදනය", p: "වියළි කාලගුණයේදී දිනකට දෙවරක් ජලය දමන්න. වළ වටා වසුන් (Mulching) යෙදීමෙන් තෙතමනය ආරක්ෂා වේ." },
+                { h: "🛡️ රෝග පාලනය", p: "කොළ කහ වීමක් දුටුවහොත් දිලීර නාශකයක් භාවිතා කරන්න. කාබනික පොහොර වැඩිපුර යෙදීමෙන් ශක්තිමත් ගසක් ලබා ගත හැක." }
             ]
         },
         rata: {
-            title: "Rata Puwak Planting Guide",
+            title: "රට පුවක් සිටුවීමේ උපදෙස්",
             img: "images/rata puwak.jpeg",
-            steps: [
-                { h: "Step 1: Distance", p: "ගස් දෙකක් අතර අඩි 8ක පරතරයක් තබා ගන්න." },
-                { h: "Step 2: Fertilizer", p: "මුල් අවධියේදී කාබනික පොහොර පමණක් භාවිතා කරන්න." }
+            content: [
+                { h: "🌱 සිටුවීම", p: "වැසි සහිත කාලගුණයකදී සිටුවීම වඩාත් සුදුසුයි. පැළය සිටුවීමේදී මූල පද්ධතියට හානි නොවන සේ පොලිතින් කවරය ඉවත් කරන්න." },
+                { h: "🧪 පොහොර යෙදීම", p: "වසරකට දෙවරක් (වැසි ආරම්භයේදී) මතුපිට පස් සමඟ මිශ්‍ර කර පොහොර යොදන්න. නයිට්‍රජන් වැඩි පොහොර වර්ධනය වේගවත් කරයි." },
+                { h: "🌾 පස", p: "හොඳින් ජලය බැසයන ලැටරයිට් හෝ වැලි ලෝම පස මෙයට වඩාත් හිතකර වේ." }
             ]
         },
         pepper: {
-            title: "Black Pepper Guide",
+            title: "ගම්මිරිස් වගාව සඳහා උපදෙස්",
             img: "images/Gammiris.jpeg",
-            steps: [
-                { h: "Step 1: Support", p: "ආධාරකයක් (කණුවක්) අසල සිටුවන්න." },
-                { h: "Step 2: Soil", p: "හොඳින් ජලය බැසයන පසක් තිබීම වැදගත්ය." }
+            content: [
+                { h: "🌳 ආධාරක සැපයීම", p: "පැළය සිටුවීමට පෙර ජීවී (ග්ලිරිසීඩියා) හෝ අජීවී (කොන්ක්‍රීට්) ආධාරකයක් සිටුවා තිබිය යුතුය." },
+                { h: "✂️ පුහුණු කිරීම", p: "වැල් ඇදී යන විට ආධාරකයට තබා බැඳීම කරන්න. අතු බෙදීම වැඩි කිරීමට අග්‍රස්ථය කපා දමන්න (Pruning)." },
+                { h: "🧴 රෝග පාලනය", p: "මුල් කුණු වීම වැළැක්වීමට වළ වටා ජලය රැඳීමට ඉඩ නොදෙන්න. කොළ පුල්ලි රෝගය සඳහා තඹ සහිත දිලීර නාශකයක් යොදන්න." }
             ]
         },
         lime: {
-            title: "Lime Plant Guide",
+            title: "දෙහි පැළ නඩත්තු කිරීම",
             img: "images/dehi.jpeg",
-            steps: [
-                { h: "Step 1: Sunlight", p: "හොඳින් හිරු එළිය ලැබෙන ස්ථානයක් තෝරාගන්න." },
-                { h: "Step 2: Pruning", p: "අනවශ්‍ය අතු කපා දමන්න." }
+            content: [
+                { h: "☀️ ස්ථානය", p: "දිනකට අවම වශයෙන් පැය 6-8 ක පූර්ණ හිරු එළිය ලැබෙන ස්ථානයක් තෝරාගන්න." },
+                { h: "🥘 පෝෂණය", p: "මල් පිපෙන කාලයට පෙර පොටෑසියම් වැඩි පොහොරක් යෙදීමෙන් වැඩි අස්වැන්නක් ලබා ගත හැක." },
+                { h: "🐜 කෘමි පාලනය", p: "කොළ හකුලන පණුවන් (Leaf Miner) පාලනය කිරීමට කොහොඹ තෙල් මිශ්‍රණයක් භාවිතා කිරීම ඉතා සාර්ථකයි." }
             ]
         }
     };
@@ -280,41 +230,15 @@
         document.getElementById('guideImg').src = data.img;
         document.getElementById('guideTitle').innerText = data.title;
         let html = '';
-        data.steps.forEach(s => {
-            html += `<div class="guide-step"><h4>${s.h}</h4><p>${s.p}</p></div>`;
+        data.content.forEach(item => {
+            html += `<div class="guide-section"><h4>${item.h}</h4><p>${item.p}</p></div>`;
         });
-        document.getElementById('guideSteps').innerHTML = html;
+        document.getElementById('guideBody').innerHTML = html;
         document.getElementById('guideModal').style.display = "block";
     }
 
     function closeGuide() { document.getElementById('guideModal').style.display = "none"; }
-
-    // 3. Feedback Logic
-    function renderFeedbacks() {
-        let reviews = JSON.parse(localStorage.getItem('ceylonAgroReviews')) || [
-            { name: "Kamal Perera", rating: "5", comment: "ඉතාමත් හොඳ සේවාවක්!" },
-            { name: "Sarah M.", rating: "5", comment: "Excellent plants." }
-        ];
-        const fbSlider = document.getElementById("feedbackSlider");
-        fbSlider.innerHTML = '';
-        reviews.forEach(rev => {
-            fbSlider.innerHTML += `<div class="feedback-slide"><div class="feedback-card"><h4>${rev.name}</h4><p>${rev.comment}</p></div></div>`;
-        });
-    }
-
-    window.onload = () => { 
-        renderFeedbacks(); 
-        setInterval(() => {
-            const fbSlider = document.getElementById("feedbackSlider");
-            const slides = document.querySelectorAll('.feedback-slide');
-            if(slides.length > 0) {
-                let currentIdx = (parseInt(fbSlider.dataset.idx) || 0) + 1;
-                if(currentIdx >= slides.length) currentIdx = 0;
-                fbSlider.style.transform = `translateX(-${currentIdx * 100}%)`;
-                fbSlider.dataset.idx = currentIdx;
-            }
-        }, 4000);
-    };
+    window.onclick = (e) => { if (e.target.className === 'modal') closeGuide(); }
 </script>
 
 </body>
