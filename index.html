@@ -60,15 +60,20 @@
         .stat-box { background: #ffffff; padding: 20px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); text-align: center; width: 180px; border-bottom: 4px solid var(--accent-green); }
         .stat-box h3 { font-size: 1.8rem; color: var(--accent-green); font-family: 'Arial Black', sans-serif; }
 
-        /* Sections */
+        /* Product Grid & Card */
         .section { padding: 80px 5% 40px; text-align: center; }
         .section h2 { font-size: 16px; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 40px; color: var(--accent-green); }
-
-        /* Product Grid */
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 30px; }
-        .product-card { text-align: left; background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        
+        .product-card { 
+            text-align: left; background: #fff; border-radius: 10px; overflow: hidden; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05); cursor: pointer; transition: 0.3s;
+            position: relative;
+        }
+        .product-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
         .product-card img { width: 100%; height: 300px; object-fit: cover; }
         .product-card-info { padding: 20px; }
+        .view-guide { font-size: 11px; color: var(--accent-green); font-weight: bold; text-transform: uppercase; margin-top: 10px; display: block; }
 
         /* Feedback Slider */
         .feedback-section { padding: 80px 5%; background: #fdfdfd; text-align: center; overflow: hidden; }
@@ -76,31 +81,28 @@
         .feedback-slider { display: flex; transition: transform 0.5s ease-in-out; width: 100%; }
         .feedback-slide { min-width: 100%; box-sizing: border-box; padding: 10px; }
         .feedback-card { background: #fff; padding: 30px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); border: 1px solid #eee; }
-        .feedback-form-container { max-width: 500px; margin: 40px auto; padding: 25px; background: #f9f9f9; border-radius: 12px; border: 1px solid #eee; text-align: left; }
-        .feedback-form-container input, .feedback-form-container select, .feedback-form-container textarea { width: 100%; padding: 12px; margin-bottom: 12px; border: 1px solid #ddd; border-radius: 8px; font-family: inherit; }
-        .btn-post { width: 100%; padding: 15px; background: var(--accent-green); color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; }
 
-        /* Split Screen Map Section */
+        /* Split Screen Map */
         .contact-split { display: flex; flex-wrap: wrap; background: #fff; margin-top: 50px; min-height: 450px; }
         .contact-info-side { flex: 1; min-width: 300px; padding: 60px 5%; background: var(--accent-green); color: white; display: flex; flex-direction: column; justify-content: center; }
-        .map-side { flex: 1; min-width: 300px; position: relative; min-height: 400px; }
-        .map-side iframe { width: 100%; height: 100%; border: none; filter: grayscale(0.2) contrast(1.1); }
-        
-        .contact-details { margin-top: 30px; }
-        .contact-item { margin-bottom: 20px; display: flex; align-items: center; gap: 15px; }
-        .contact-item span { font-size: 14px; opacity: 0.9; }
+        .map-side { flex: 1; min-width: 300px; min-height: 400px; }
+        .map-side iframe { width: 100%; height: 100%; border: none; filter: grayscale(0.1); }
 
-        /* Modal */
-        .modal { display: none; position: fixed; z-index: 10000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); backdrop-filter: blur(5px); }
-        .modal-content { background: #fff; margin: 5% auto; padding: 30px; border-radius: 15px; width: 90%; max-width: 400px; position: relative; }
-        .close-btn { position: absolute; right: 20px; top: 15px; font-size: 25px; cursor: pointer; }
-        .btn-send { width: 100%; padding: 15px; background: #25D366; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 10px; }
+        /* Modals (General) */
+        .modal { display: none; position: fixed; z-index: 10000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); backdrop-filter: blur(8px); overflow-y: auto; }
+        .modal-content { background: #fff; margin: 50px auto; padding: 30px; border-radius: 20px; width: 90%; max-width: 500px; position: relative; animation: slideIn 0.3s ease-out; }
+        @keyframes slideIn { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .close-btn { position: absolute; right: 20px; top: 15px; font-size: 30px; cursor: pointer; color: #333; }
+
+        /* Plant Guide Style */
+        .guide-img { width: 100%; height: 200px; object-fit: cover; border-radius: 15px; margin-bottom: 20px; }
+        .guide-step { margin-bottom: 15px; border-left: 3px solid var(--accent-green); padding-left: 15px; }
+        .guide-step h4 { font-size: 14px; color: var(--accent-green); }
+        .guide-step p { font-size: 13px; color: #555; line-height: 1.4; }
 
         @media (max-width: 768px) {
             .nav-links { display: none; }
-            .stat-box { width: 45%; }
             .contact-split { flex-direction: column; }
-            .map-side { height: 350px; }
         }
     </style>
 </head>
@@ -135,173 +137,183 @@
 
 <section id="plants" class="section">
     <h2>Our Plant Collection</h2>
+    <p style="font-size: 12px; margin-bottom: 30px; color: var(--muted-text);">පැළය හිටවන ආකාරය බැලීමට පින්තූරය මත Click කරන්න.</p>
     <div class="grid">
-        <div class="product-card">
+        <div class="product-card" onclick="openGuide('hamban')">
             <img src="images/hamban ouwak.jpeg" alt="Puwak">
-            <div class="product-card-info"><h3>Hamban Puwak</h3><p>High-quality seedlings for your garden.</p></div>
+            <div class="product-card-info">
+                <h3>Hamban Puwak</h3>
+                <p>High-quality seedlings.</p>
+                <span class="view-guide">Click to see How to Plant →</span>
+            </div>
         </div>
-        <div class="product-card">
+        <div class="product-card" onclick="openGuide('rata')">
             <img src="images/rata puwak.jpeg" alt="Puwak">
-            <div class="product-card-info"><h3>Rata Puwak</h3><p>Premium yield plants.</p></div>
+            <div class="product-card-info">
+                <h3>Rata Puwak</h3>
+                <p>Premium yield plants.</p>
+                <span class="view-guide">Click to see How to Plant →</span>
+            </div>
         </div>
-        <div class="product-card">
+        <div class="product-card" onclick="openGuide('pepper')">
             <img src="images/Gammiris.jpeg" alt="Pepper">
-            <div class="product-card-info"><h3>Black Pepper</h3><p>Fast-growing vines.</p></div>
+            <div class="product-card-info">
+                <h3>Black Pepper</h3>
+                <p>Fast-growing vines.</p>
+                <span class="view-guide">Click to see How to Plant →</span>
+            </div>
         </div>
-        <div class="product-card">
+        <div class="product-card" onclick="openGuide('lime')">
             <img src="images/dehi.jpeg" alt="Lime">
-            <div class="product-card-info"><h3>Lime Plants</h3><p>Healthy lime seedlings.</p></div>
+            <div class="product-card-info">
+                <h3>Lime Plants</h3>
+                <p>Healthy lime seedlings.</p>
+                <span class="view-guide">Click to see How to Plant →</span>
+            </div>
         </div>
     </div>
 </section>
 
+<div id="guideModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeGuide()">&times;</span>
+        <img id="guideImg" src="" class="guide-img">
+        <h3 id="guideTitle" style="color: var(--accent-green); margin-bottom: 20px;"></h3>
+        <div id="guideSteps"></div>
+        <button onclick="closeGuide()" style="width:100%; padding:12px; background:var(--accent-green); color:white; border:none; border-radius:10px; margin-top:20px; cursor:pointer; font-weight:bold;">I Got it!</button>
+    </div>
+</div>
+
 <section class="feedback-section">
     <h2>Customer Feedback</h2>
-    <div class="feedback-container">
-        <div id="feedbackSlider" class="feedback-slider"></div>
-    </div>
-    <div class="feedback-form-container">
-        <h3>Share Your Experience</h3>
-        <form id="customerFeedbackForm">
-            <input type="text" id="fbName" placeholder="ඔබේ නම" required>
-            <select id="fbRating">
-                <option value="5">★★★★★ (5 Stars)</option>
-                <option value="4">★★★★☆ (4 Stars)</option>
-                <option value="3">★★★☆☆ (3 Stars)</option>
-            </select>
-            <textarea id="fbComment" placeholder="ඔබේ අදහස..." rows="2" required></textarea>
-            <button type="submit" class="btn-post">Post Feedback</button>
-        </form>
-    </div>
+    <div class="feedback-container"><div id="feedbackSlider" class="feedback-slider"></div></div>
 </section>
 
 <section id="contact" class="contact-split">
     <div class="contact-info-side">
-        <h2 style="color: #fff; text-align: left; font-size: 24px; margin-bottom: 10px;">Visit Our Nursery</h2>
-        <p style="opacity: 0.8; font-size: 14px;">නිරෝගී සහ ගුණාත්මක පැළ ලබාගැනීමට අපගේ නර්සරි එකට අදම පැමිණෙන්න.</p>
-        
+        <h2>Visit Our Nursery</h2>
         <div class="contact-details">
-            <div class="contact-item">
-                <div style="font-size: 20px;">📍</div>
-                <span>Dematagolla, Wellawa, Kurunegala</span>
-            </div>
-            <div class="contact-item">
-                <div style="font-size: 20px;">📞</div>
-                <span>+94 72 778 2588</span>
-            </div>
-            <div style="margin-top: 30px;">
-                <a href="https://www.google.com/maps?q=7.555389,80.388361" target="_blank" style="color: white; border: 1px solid white; padding: 10px 20px; text-decoration: none; font-size: 12px; border-radius: 5px; font-weight: bold;">Get Directions</a>
-            </div>
+            <p>Dematagolla, Wellawa, Kurunegala</p>
+            <p>+94 72 778 2588</p>
         </div>
     </div>
     <div class="map-side">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3954.9184517173114!2d80.38578611100589!3d7.555388892429215!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zN8KwMzMnMTkuNCJOIDgwwrAyMycxOC4xIkU!5e0!3m2!1sen!2slk!4v1712800000000!5m2!1sen!2slk" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3955.514603632906!2d80.38580837454848!3d7.554833292458923!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zN8KwMzMnMTkuNCJOIDgwwrAyMycxOC4xIkU!5e0!3m2!1sen!2slk!4v1712781440000"></iframe>
     </div>
 </section>
 
-<footer style="padding: 40px; text-align: center; font-size: 10px; color: #999; border-top: 1px solid #eee;">
-    <p>© 2026 CEYLONAGRO. All Rights Reserved.</p>
-</footer>
-
 <div id="inquiryModal" class="modal">
     <div class="modal-content">
-        <span class="close-btn" id="closeModal">&times;</span>
-        <h3 style="margin-bottom: 20px; color: var(--accent-green);">Send Inquiry</h3>
+        <span class="close-btn" id="closeModal">×</span>
+        <h3 style="margin-bottom: 20px;">Send Inquiry</h3>
         <form id="inquiryForm">
-            <div style="margin-bottom:10px;"><label style="font-size:12px; font-weight:600;">Name</label><input type="text" id="userName" style="width:100%; padding:10px; border-radius:8px; border:1px solid #ddd;" required></div>
-            <div style="margin-bottom:10px;"><label style="font-size:12px; font-weight:600;">City</label><input type="text" id="userCity" style="width:100%; padding:10px; border-radius:8px; border:1px solid #ddd;" required></div>
-            <div style="margin-bottom:10px;">
-                <label style="font-size:12px; font-weight:600;">Product</label>
-                <select id="userProduct" style="width:100%; padding:10px; border-radius:8px; border:1px solid #ddd;" required>
-                    <option value="General">General Inquiry</option>
-                    <option value="Hamban Puwak">Hamban Puwak</option>
-                    <option value="Rata Puwak">Rata Puwak</option>
-                    <option value="Black Pepper">Black Pepper</option>
-                    <option value="Lime Plants">Lime Plants</option>
-                </select>
-            </div>
-            <div style="margin-bottom:10px;"><label style="font-size:12px; font-weight:600;">Message</label><textarea id="userMessage" style="width:100%; padding:10px; border-radius:8px; border:1px solid #ddd;" rows="2"></textarea></div>
-            <button type="submit" class="btn-send">Chat on WhatsApp</button>
+            <input type="text" id="userName" placeholder="Name" required style="width:100%; padding:10px; margin-bottom:10px; border-radius:8px; border:1px solid #ddd;">
+            <input type="text" id="userCity" placeholder="City" required style="width:100%; padding:10px; margin-bottom:10px; border-radius:8px; border:1px solid #ddd;">
+            <select id="userProduct" style="width:100%; padding:10px; margin-bottom:10px; border-radius:8px; border:1px solid #ddd;">
+                <option value="General">General Inquiry</option>
+                <option value="Puwak">Puwak Plants</option>
+                <option value="Pepper">Pepper Plants</option>
+            </select>
+            <textarea id="userMessage" placeholder="Message" style="width:100%; padding:10px; margin-bottom:10px; border-radius:8px; border:1px solid #ddd;"></textarea>
+            <button type="submit" style="width:100%; padding:15px; background:#25D366; color:white; border:none; border-radius:8px; font-weight:bold; cursor:pointer;">Chat on WhatsApp</button>
         </form>
     </div>
 </div>
 
 <script>
-    const modal = document.getElementById("inquiryModal");
-    const openBtn = document.getElementById("openInquiry");
-    const closeBtn = document.getElementById("closeModal");
+    // 1. WhatsApp & Stats Logic
     const countDisplay = document.getElementById("customerCount");
-    const fbSlider = document.getElementById("feedbackSlider");
-    let currentIndex = 0;
-
-    // Inquiry Logic
     let count = parseInt(localStorage.getItem('inquiryCount')) || 500;
     countDisplay.innerText = count + "+";
 
-    openBtn.onclick = (e) => { e.preventDefault(); modal.style.display = "block"; }
-    closeBtn.onclick = () => { modal.style.display = "none"; }
-    window.onclick = (e) => { if (e.target == modal) modal.style.display = "none"; }
+    document.getElementById("openInquiry").onclick = (e) => { e.preventDefault(); document.getElementById("inquiryModal").style.display = "block"; }
+    document.getElementById("closeModal").onclick = () => { document.getElementById("inquiryModal").style.display = "none"; }
 
     document.getElementById("inquiryForm").onsubmit = function(e) {
         e.preventDefault();
-        const myNumber = "94727782588";
-        const name = document.getElementById("userName").value;
-        const city = document.getElementById("userCity").value;
-        const prod = document.getElementById("userProduct").value;
-        const msg = document.getElementById("userMessage").value;
-        const text = `*Inquiry from CeylonAgro Website*%0A%0A*Name:* ${name}%0A*City:* ${city}%0A*Product:* ${prod}%0A*Message:* ${msg}`;
-        count++;
-        localStorage.setItem('inquiryCount', count);
+        const text = `*Inquiry from Website*%0A*Name:* ${document.getElementById("userName").value}%0A*Product:* ${document.getElementById("userProduct").value}`;
+        window.open(`https://wa.me/94727782588?text=${text}`, '_blank');
+        count++; localStorage.setItem('inquiryCount', count);
         countDisplay.innerText = count + "+";
-        window.open(`https://wa.me/${myNumber}?text=${text}`, '_blank');
-        modal.style.display = "none";
-        this.reset();
+        document.getElementById("inquiryModal").style.display = "none";
     }
 
-    // Feedback Rendering
-    function renderFeedbacks() {
-        let reviews = JSON.parse(localStorage.getItem('ceylonAgroReviews'));
-        if (!reviews || reviews.length === 0) {
-            reviews = [
-                { name: "Kamal Perera", rating: "5", comment: "ඉතාමත් හොඳ සේවාවක්! පැළ නිරෝගීව ලැබුණා." },
-                { name: "Sarah M.", rating: "5", comment: "Excellent plants and fast delivery. Highly recommended." },
-                { name: "Nimal Silva", rating: "5", comment: "කුරුණෑගල තියෙන හොඳම පැළ නර්සරි එකක්." }
-            ];
+    // 2. Plant Guide Logic
+    const guides = {
+        hamban: {
+            title: "Hamban Puwak Planting Guide",
+            img: "images/hamban ouwak.jpeg",
+            steps: [
+                { h: "Step 1: Hole Prep", p: "අඩි 2x2 ප්‍රමාණයේ වළක් කපා මතුපිට පස් සහ කොම්පෝස්ට් පුරවන්න." },
+                { h: "Step 2: Planting", p: "පැළය මැදින් තබා පස් පුරවා තද කරන්න." },
+                { h: "Step 3: Care", p: "දිනකට දෙවරක් ජලය දමන්න. සෙවන ලබා දෙන්න." }
+            ]
+        },
+        rata: {
+            title: "Rata Puwak Planting Guide",
+            img: "images/rata puwak.jpeg",
+            steps: [
+                { h: "Step 1: Distance", p: "ගස් දෙකක් අතර අඩි 8ක පරතරයක් තබා ගන්න." },
+                { h: "Step 2: Fertilizer", p: "මුල් අවධියේදී කාබනික පොහොර පමණක් භාවිතා කරන්න." }
+            ]
+        },
+        pepper: {
+            title: "Black Pepper Guide",
+            img: "images/Gammiris.jpeg",
+            steps: [
+                { h: "Step 1: Support", p: "ආධාරකයක් (කණුවක්) අසල සිටුවන්න." },
+                { h: "Step 2: Soil", p: "හොඳින් ජලය බැසයන පසක් තිබීම වැදගත්ය." }
+            ]
+        },
+        lime: {
+            title: "Lime Plant Guide",
+            img: "images/dehi.jpeg",
+            steps: [
+                { h: "Step 1: Sunlight", p: "හොඳින් හිරු එළිය ලැබෙන ස්ථානයක් තෝරාගන්න." },
+                { h: "Step 2: Pruning", p: "අනවශ්‍ය අතු කපා දමන්න." }
+            ]
         }
-        fbSlider.innerHTML = '';
-        reviews.forEach(rev => {
-            const stars = "★".repeat(parseInt(rev.rating)) + "☆".repeat(5 - parseInt(rev.rating));
-            const slideDiv = document.createElement('div');
-            slideDiv.className = 'feedback-slide';
-            slideDiv.innerHTML = `<div class="feedback-card"><div style="color:#ffcc00; font-size:1.2rem; margin-bottom:10px;">${stars}</div><p style="font-size: 14px; font-style: italic; color: #555; margin-bottom: 10px;">"${rev.comment}"</p><div style="font-weight: bold; font-size: 12px; color: #1a4332;">- ${rev.name}</div></div>`;
-            fbSlider.appendChild(slideDiv);
-        });
-        currentIndex = 0;
-        fbSlider.style.transform = `translateX(0%)`;
-    }
-
-    function startAutoSlide() {
-        setInterval(() => {
-            const slides = document.querySelectorAll('.feedback-slide');
-            if (slides.length > 1) {
-                currentIndex = (currentIndex + 1) % slides.length;
-                fbSlider.style.transform = `translateX(-${currentIndex * 100}%)`;
-            }
-        }, 4000);
-    }
-
-    document.getElementById('customerFeedbackForm').onsubmit = function(e) {
-        e.preventDefault();
-        let reviews = JSON.parse(localStorage.getItem('ceylonAgroReviews')) || [];
-        reviews.unshift({ name: document.getElementById('fbName').value, rating: document.getElementById('fbRating').value, comment: document.getElementById('fbComment').value });
-        localStorage.setItem('ceylonAgroReviews', JSON.stringify(reviews));
-        this.reset();
-        renderFeedbacks();
     };
 
-    window.onload = function() {
-        renderFeedbacks();
-        startAutoSlide();
+    function openGuide(key) {
+        const data = guides[key];
+        document.getElementById('guideImg').src = data.img;
+        document.getElementById('guideTitle').innerText = data.title;
+        let html = '';
+        data.steps.forEach(s => {
+            html += `<div class="guide-step"><h4>${s.h}</h4><p>${s.p}</p></div>`;
+        });
+        document.getElementById('guideSteps').innerHTML = html;
+        document.getElementById('guideModal').style.display = "block";
+    }
+
+    function closeGuide() { document.getElementById('guideModal').style.display = "none"; }
+
+    // 3. Feedback Logic
+    function renderFeedbacks() {
+        let reviews = JSON.parse(localStorage.getItem('ceylonAgroReviews')) || [
+            { name: "Kamal Perera", rating: "5", comment: "ඉතාමත් හොඳ සේවාවක්!" },
+            { name: "Sarah M.", rating: "5", comment: "Excellent plants." }
+        ];
+        const fbSlider = document.getElementById("feedbackSlider");
+        fbSlider.innerHTML = '';
+        reviews.forEach(rev => {
+            fbSlider.innerHTML += `<div class="feedback-slide"><div class="feedback-card"><h4>${rev.name}</h4><p>${rev.comment}</p></div></div>`;
+        });
+    }
+
+    window.onload = () => { 
+        renderFeedbacks(); 
+        setInterval(() => {
+            const fbSlider = document.getElementById("feedbackSlider");
+            const slides = document.querySelectorAll('.feedback-slide');
+            if(slides.length > 0) {
+                let currentIdx = (parseInt(fbSlider.dataset.idx) || 0) + 1;
+                if(currentIdx >= slides.length) currentIdx = 0;
+                fbSlider.style.transform = `translateX(-${currentIdx * 100}%)`;
+                fbSlider.dataset.idx = currentIdx;
+            }
+        }, 4000);
     };
 </script>
 
