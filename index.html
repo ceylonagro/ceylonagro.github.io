@@ -93,13 +93,23 @@
         .input-group input, .input-group select, .input-group textarea { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-family: inherit; }
         .btn-send { width: 100%; padding: 15px; background: #25D366; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; }
 
-        /* Feedback Section */
-        .feedback-section { padding: 80px 10%; background: #fdfdfd; text-align: center; }
-        .feedback-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px; }
-        .feedback-card { background: #fff; padding: 30px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border: 1px solid #eee; transition: 0.3s; }
-        .stars { color: #ffcc00; font-size: 1.2rem; margin-bottom: 15px; }
-        .feedback-text { font-size: 14px; color: #555; font-style: italic; margin-bottom: 20px; }
-        .customer-name { font-weight: 700; font-size: 13px; text-transform: uppercase; color: var(--accent-green); }
+       /* Feedback Section Styles */
+        .feedback-section { padding: 80px 5%; background: #fdfdfd; text-align: center; }
+        .feedback-form-container { 
+            max-width: 500px; margin: 0 auto 50px; padding: 25px; 
+            background: #f9f9f9; border-radius: 12px; border: 1px solid #eee; text-align: left;
+        }
+        .feedback-form-container h3 { font-size: 14px; margin-bottom: 15px; text-transform: uppercase; color: var(--accent-green); }
+        .feedback-form-container input, .feedback-form-container select, .feedback-form-container textarea {
+            width: 100%; padding: 12px; margin-bottom: 12px; border: 1px solid #ddd; border-radius: 8px; font-family: inherit;
+        }
+        .btn-post { 
+            width: 100%; padding: 15px; background: var(--accent-green); color: white; 
+            border: none; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.3s;
+        }
+        .feedback-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-top: 40px; }
+        .feedback-card { background: #fff; padding: 25px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); text-align: left; border-left: 5px solid #25D366; }
+        .stars { color: #ffcc00; margin-bottom: 10px; font-size: 1.1rem; }
         
         @media (max-width: 768px) {
             .nav-links { display: none; }
@@ -179,24 +189,26 @@
         </div>
     </div>
 </section>
-</div> </section> <section class="feedback-section">
+<section class="feedback-section">
     <h2>Customer Feedback</h2>
-    <div class="feedback-grid">
-        <div class="feedback-card">
-            <div class="stars">★★★★★</div>
-            <p class="feedback-text">"ගම්පොළින් ගත්ත හොඳම පුවක් පැළ ටික. සති දෙකකින් ලස්සනට හැදෙන්න ගත්තා. බොහොම ස්තූතියි CeylonAgro!"</p>
-            <div class="customer-name">- Kamal Perera</div>
+    
+    <div class="feedback-form-container">
+        <h3>Share Your Experience</h3>
+        <form id="customerFeedbackForm">
+            <input type="text" id="fbName" placeholder="ඔබේ නම (Your Name)" required>
+            <select id="fbRating">
+                <option value="5">★★★★★ (5 Stars)</option>
+                <option value="4">★★★★☆ (4 Stars)</option>
+                <option value="3">★★★☆☆ (3 Stars)</option>
+            </select>
+            <textarea id="fbComment" placeholder="ඔබේ අදහස මෙහි ලියන්න (Write your feedback...)" rows="3" required></textarea>
+            <button type="submit" class="btn-post">Post Feedback</button>
+        </form>
+    </div>
+
+    <div id="feedbackDisplayGrid" class="feedback-grid">
         </div>
-        <div class="feedback-card">
-            <div class="stars">★★★★★</div>
-            <p class="feedback-text">"I ordered Black Pepper vines. They were delivered in perfect condition. Highly recommend for any home gardener."</p>
-            <div class="customer-name">- Sarah Munasinghe</div>
-        </div>
-        <div class="feedback-card">
-            <div class="stars">★★★★★</div>
-            <p class="feedback-text">"දෙහි පැළ ටික නියමයි. WhatsApp එකෙන් අහපු හැම දේකටම ඉක්මනින් උත්තර ලැබුණා. සර්විස් එක සුපිරි!"</p>
-            <div class="customer-name">- Nuwan Silva</div>
-        </div>
+</section>
     </div>
 </section>
 <section id="about" class="section">
@@ -262,6 +274,44 @@
         window.open(`https://wa.me/${myNumber}?text=${text}`, '_blank');
         modal.style.display = "none";
     }
+    const fbForm = document.getElementById('customerFeedbackForm');
+    const fbDisplay = document.getElementById('feedbackDisplayGrid');
+
+    function displayFeedbacks() {
+        // පරණ දත්ත හෝ default දත්ත ලබා ගැනීම
+        let reviews = JSON.parse(localStorage.getItem('ceylonAgroReviews')) || [
+            { name: "Kamal Perera", rating: "5", comment: "ගම්පොළින් ගත්ත හොඳම පුවක් පැළ ටික. බොහොම ස්තූතියි!" },
+            { name: "Sarah M.", rating: "5", comment: "Very fast delivery and healthy plants." }
+        ];
+
+        fbDisplay.innerHTML = '';
+        reviews.forEach(rev => {
+            const stars = "★".repeat(parseInt(rev.rating)) + "☆".repeat(5 - parseInt(rev.rating));
+            fbDisplay.innerHTML += `
+                <div class="feedback-card">
+                    <div class="stars">${stars}</div>
+                    <p style="font-size: 14px; font-style: italic; color: #555; margin-bottom: 10px;">"${rev.comment}"</p>
+                    <div style="font-weight: bold; font-size: 12px; color: #1a4332;">- ${rev.name}</div>
+                </div>`;
+        });
+    }
+
+    fbForm.onsubmit = function(e) {
+        e.preventDefault();
+        const name = document.getElementById('fbName').value;
+        const rating = document.getElementById('fbRating').value;
+        const comment = document.getElementById('fbComment').value;
+
+        let reviews = JSON.parse(localStorage.getItem('ceylonAgroReviews')) || [];
+        reviews.unshift({ name, rating, comment });
+
+        localStorage.setItem('ceylonAgroReviews', JSON.stringify(reviews));
+        fbForm.reset();
+        displayFeedbacks();
+        alert("ඔබේ අදහස සාර්ථකව පල කරන ලදී!");
+    };
+
+    displayFeedbacks();
 </script>
 
 </body>
