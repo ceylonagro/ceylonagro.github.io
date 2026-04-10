@@ -15,7 +15,58 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
+.stats-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 40px 10%;
+    background: #fff;
+    margin-top: -50px; /* Hero එක උඩට පොඩ්ඩක් යන විදිහට */
+    position: relative;
+    z-index: 10;
+}
 
+.stat-box {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    text-align: center;
+    min-width: 200px;
+    border-bottom: 4px solid var(--accent-green);
+    transition: 0.3s;
+}
+
+.stat-box:hover {
+    transform: translateY(-10px);
+}
+
+.stat-box h3 {
+    font-size: 2.5rem;
+    color: var(--accent-green);
+    margin-bottom: 5px;
+    font-family: 'Arial Black', sans-serif;
+}
+
+.stat-box p {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--muted-text);
+    font-weight: 600;
+}
+
+/* Mobile Screen */
+@media (max-width: 768px) {
+    .stats-container {
+        flex-direction: column;
+        margin-top: 20px;
+        padding: 20px;
+    }
+    .stat-box {
+        min-width: unset;
+    }
+}
         body { 
             font-family: 'Inter', sans-serif; 
             background: var(--bg-color); 
@@ -194,7 +245,20 @@
         .product-card img { width: 100%; height: 350px; object-fit: cover; margin-bottom: 20px; border-radius: 5px; }
         .product-card h3 { font-size: 14px; font-weight: 700; text-transform: uppercase; margin-bottom: 8px; }
         .product-card p { font-size: 13px; color: var(--muted-text); }
-
+<section class="stats-container">
+    <div class="stat-box">
+        <h3 class="counter">500+</h3>
+        <p>Happy Customers</p>
+    </div>
+    <div class="stat-box">
+        <h3 class="counter">20+</h3>
+        <p>Premium Products</p>
+    </div>
+    <div class="stat-box">
+        <h3 class="counter">1000+</h3>
+        <p>Plants Distributed</p>
+    </div>
+</section>
         footer { padding: 60px 10%; border-top: 1px solid var(--border-color); text-align: center; font-size: 10px; color: #999; letter-spacing: 2px; }
 
         @media (max-width: 768px) {
