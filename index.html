@@ -3,261 +3,232 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CeylonAgro | Pure & Natural</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <title>CeylonAgro | Premium Plant Nursery</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #ffffff;
-            --text-color: #1a1a1a;
-            --muted-text: #777777;
-            --accent-green: #1a4332;
-            --border-color: #f5f5f5;
+            --primary: #1a4332;
+            --accent: #2ecc71;
+            --glass: rgba(255, 255, 255, 0.8);
+            --shadow: 0 20px 40px rgba(0,0,0,0.1);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body { 
-            font-family: 'Inter', sans-serif; 
-            background: var(--bg-color); 
-            color: var(--text-color); 
-            line-height: 1.8;
-            scroll-behavior: smooth;
-            overflow-x: hidden;
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background: linear-gradient(-45deg, #f8f9fa, #e9ecef, #f1f3f5);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: #2d3436; overflow-x: hidden;
         }
 
-        /* Navigation */
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Premium Nav */
         nav {
             display: flex; justify-content: space-between; align-items: center;
-            padding: 15px 5%; background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: sticky; top: 0; z-index: 1000;
+            padding: 20px 8%; background: var(--glass); backdrop-filter: blur(15px);
+            position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid rgba(255,255,255,0.3);
         }
-        .logo-link { display: flex; align-items: center; text-decoration: none; gap: 10px; }
-        .logo-img { height: 50px; width: auto; }
-        .logo-text { font-size: 1.5rem; font-weight: 800; color: var(--accent-green); letter-spacing: 1px; font-family: 'Arial Black', sans-serif; }
+        .logo-text { font-size: 1.8rem; font-weight: 800; color: var(--primary); letter-spacing: -1px; }
 
-        .nav-links { display: flex; list-style: none; gap: 20px; }
-        .nav-links a { text-decoration: none; color: var(--text-color); font-size: 10px; font-weight: 700; text-transform: uppercase; }
-
-        /* Floating WhatsApp */
-        .floating-btn {
+        /* Floating WhatsApp Button */
+        .whatsapp-float {
             position: fixed; bottom: 30px; right: 30px; background: #25D366; color: white;
-            padding: 15px 25px; border-radius: 50px; text-decoration: none; font-weight: bold;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2); z-index: 9999; display: flex; align-items: center; gap: 10px; transition: 0.3s;
+            padding: 15px 30px; border-radius: 100px; text-decoration: none; font-weight: 700;
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4); z-index: 999; 
+            display: flex; align-items: center; gap: 10px; transition: 0.4s;
         }
-        .floating-btn:hover { transform: scale(1.05); }
+        .whatsapp-float:hover { transform: translateY(-5px) scale(1.05); }
 
-        /* Hero */
+        /* Hero Section */
         .hero {
-            height: 50vh; background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('images/family-garden-planting-vegetation-together.jpg');
-            background-size: cover; background-position: center; display: flex; flex-direction: column; 
-            justify-content: center; align-items: center; color: white; text-align: center; padding: 20px;
+            height: 70vh; position: relative; display: flex; align-items: center; justify-content: center;
+            text-align: center; color: white; overflow: hidden;
         }
-        .hero h1 { font-size: clamp(1.8rem, 5vw, 3rem); letter-spacing: 5px; text-transform: uppercase; }
-
-        /* Stats */
-        .stats-container { display: flex; justify-content: center; gap: 20px; padding: 0 5%; margin-top: -50px; position: relative; z-index: 10; flex-wrap: wrap; }
-        .stat-box { background: #ffffff; padding: 20px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); text-align: center; width: 160px; border-bottom: 4px solid var(--accent-green); }
-        .stat-box h3 { font-size: 1.5rem; color: var(--accent-green); }
-
-        /* Plants Section */
-        .section { padding: 80px 5% 40px; text-align: center; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 30px; }
-        .product-card { 
-            background: #fff; border-radius: 10px; overflow: hidden; 
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05); cursor: pointer; transition: 0.3s;
+        .hero-video-bg {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/family-garden-planting-vegetation-together.jpg');
+            background-size: cover; background-position: center; z-index: -1;
         }
-        .product-card:hover { transform: translateY(-5px); }
-        .product-card img { width: 100%; height: 300px; object-fit: cover; }
-        .product-card-info { padding: 20px; text-align: left; }
+        .hero h1 { font-size: clamp(2.5rem, 8vw, 4.5rem); font-weight: 800; margin-bottom: 10px; }
+        .hero p { font-size: 1.2rem; opacity: 0.9; letter-spacing: 2px; }
 
-        /* Guide Modal */
-        .modal { display: none; position: fixed; z-index: 10000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); overflow-y: auto; }
-        .modal-content { background: #fff; margin: 40px auto; padding: 30px; border-radius: 20px; width: 95%; max-width: 600px; position: relative; }
-        .close-btn { position: absolute; right: 20px; top: 15px; font-size: 35px; cursor: pointer; color: #333; }
-        .guide-section { margin-bottom: 15px; padding: 15px; background: #f9f9f9; border-radius: 12px; text-align: left; }
-        .guide-section h4 { color: var(--accent-green); margin-bottom: 5px; }
+        /* Premium Product Cards */
+        .section { padding: 100px 8%; text-align: center; }
+        .section-title { font-size: 2.5rem; margin-bottom: 50px; color: var(--primary); }
+        
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; }
+        .card { 
+            background: white; border-radius: 24px; overflow: hidden; 
+            box-shadow: var(--shadow); transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative; border: 1px solid rgba(0,0,0,0.05);
+        }
+        .card:hover { transform: translateY(-15px); }
+        .card-img-wrap { width: 100%; height: 350px; overflow: hidden; }
+        .card img { width: 100%; height: 100%; object-fit: cover; transition: 0.8s; }
+        .card:hover img { transform: scale(1.1); }
+        .card-body { padding: 30px; text-align: left; }
+        .card-body h3 { font-size: 1.4rem; margin-bottom: 10px; color: var(--primary); }
+        .guide-link { color: var(--accent); font-weight: 700; font-size: 0.9rem; text-decoration: none; display: flex; align-items: center; gap: 5px; cursor: pointer; }
 
         /* Feedback Slider */
-        .feedback-section { padding: 60px 5%; background: #fdfdfd; text-align: center; overflow: hidden; }
-        .feedback-container { max-width: 600px; margin: 0 auto; overflow: hidden; position: relative; min-height: 180px; }
-        .feedback-slider { display: flex; transition: transform 0.5s ease-in-out; width: 100%; }
-        .feedback-slide { min-width: 100%; box-sizing: border-box; padding: 20px; }
-        .feedback-card { background: #fff; padding: 30px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); }
+        .feedback-section { background: var(--primary); color: white; padding: 100px 8%; border-radius: 50px 50px 0 0; }
+        .feedback-container { max-width: 800px; margin: 0 auto; overflow: hidden; }
+        .feedback-slider { display: flex; transition: 0.6s ease-in-out; }
+        .feedback-card { min-width: 100%; padding: 40px; text-align: center; }
+        .feedback-card p { font-size: 1.5rem; font-style: italic; margin-bottom: 20px; }
 
-        /* Contact Section (Left Info, Right Map) */
-        .contact-compact {
-            display: flex; flex-wrap: wrap; max-width: 1000px; 
-            margin: 60px auto; background: #fff; border-radius: 15px; 
-            overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        /* Contact Section */
+        .contact-wrap {
+            max-width: 1100px; margin: -50px auto 100px; background: white; 
+            display: flex; border-radius: 30px; overflow: hidden; box-shadow: var(--shadow);
         }
-        .contact-info-compact { flex: 1; min-width: 280px; padding: 40px; background: var(--accent-green); color: white; text-align: left; }
-        .map-compact { flex: 1.2; min-width: 300px; height: 350px; }
-        .map-compact iframe { width: 100%; height: 100%; border: none; }
+        .contact-info { flex: 1; padding: 60px; background: var(--primary); color: white; }
+        .contact-map { flex: 1.5; min-height: 450px; }
+
+        /* Modal Guide */
+        .modal { 
+            display: none; position: fixed; top:0; left:0; width:100%; height:100%; 
+            background: rgba(0,0,0,0.9); backdrop-filter: blur(10px); z-index: 2000;
+        }
+        .modal-content { 
+            background: white; width: 90%; max-width: 650px; margin: 50px auto; 
+            padding: 40px; border-radius: 30px; position: relative;
+        }
+        .guide-step { background: #f8f9fa; padding: 20px; border-radius: 15px; margin-bottom: 15px; border-left: 5px solid var(--accent); }
 
         @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .contact-compact { margin: 20px; flex-direction: column; }
+            .contact-wrap { flex-direction: column; margin: 20px; }
+            .contact-map { min-height: 300px; }
         }
     </style>
 </head>
 <body>
 
 <nav>
-    <a href="index.html" class="logo-link">
-        <img src="images/Logoweb.png" alt="Logo" class="logo-img">
-        <span class="logo-text">CEYLONAGRO</span>
-    </a>
-    <ul class="nav-links">
-        <li><a href="#plants">Plants</a></li>
-        <li><a href="#contact">Contact</a></li>
-    </ul>
+    <div class="logo-text">CEYLONAGRO.</div>
+    <div style="font-size: 11px; font-weight: 600; color: var(--muted-text);">PREMIUM NURSERY</div>
 </nav>
 
-<a href="https://wa.me/94727782588" class="floating-btn" target="_blank">
-    <span>Chat on WhatsApp</span>
+<a href="https://wa.me/94727782588" class="whatsapp-float" target="_blank">
+    <span>Connect on WhatsApp</span>
 </a>
 
 <section class="hero">
-    <h1>NATURAL HARVEST</h1>
-    <p>Premium Sri Lankan Plantation & Products</p>
+    <div class="hero-video-bg"></div>
+    <div>
+        <p>SINCE 2026</p>
+        <h1>Pure Nature. Premium Care.</h1>
+    </div>
 </section>
 
-<section class="stats-container">
-    <div class="stat-box"><h3 id="customerCount">500+</h3><p>Inquiries</p></div>
-    <div class="stat-box"><h3>20+</h3><p>Products</p></div>
-    <div class="stat-box"><h3>1000+</h3><p>Plants</p></div>
-</section>
-
-<section id="plants" class="section">
-    <h2>Our Plant Collection</h2>
+<section class="section">
+    <h2 class="section-title">Exclusive Collection</h2>
     <div class="grid">
-        <div class="product-card" onclick="openGuide('hamban')">
-            <img src="images/hamban ouwak.jpeg" alt="Hamban Puwak">
-            <div class="product-card-info">
+        <div class="card" onclick="openGuide('hamban')">
+            <div class="card-img-wrap"><img src="images/hamban ouwak.jpeg" alt="Puwak"></div>
+            <div class="card-body">
                 <h3>Hamban Puwak</h3>
-                <span style="color: var(--accent-green); font-size: 11px; font-weight: bold;">VIEW PLANTING GUIDE →</span>
+                <div class="guide-link">EXPLORE PLANTING GUIDE →</div>
             </div>
         </div>
-        <div class="product-card" onclick="openGuide('rata')">
-            <img src="images/rata puwak.jpeg" alt="Rata Puwak">
-            <div class="product-card-info">
+        <div class="card" onclick="openGuide('rata')">
+            <div class="card-img-wrap"><img src="images/rata puwak.jpeg" alt="Puwak"></div>
+            <div class="card-body">
                 <h3>Rata Puwak</h3>
-                <span style="color: var(--accent-green); font-size: 11px; font-weight: bold;">VIEW PLANTING GUIDE →</span>
+                <div class="guide-link">EXPLORE PLANTING GUIDE →</div>
             </div>
         </div>
-        <div class="product-card" onclick="openGuide('pepper')">
-            <img src="images/Gammiris.jpeg" alt="Black Pepper">
-            <div class="product-card-info">
+        <div class="card" onclick="openGuide('pepper')">
+            <div class="card-img-wrap"><img src="images/Gammiris.jpeg" alt="Pepper"></div>
+            <div class="card-body">
                 <h3>Black Pepper</h3>
-                <span style="color: var(--accent-green); font-size: 11px; font-weight: bold;">VIEW PLANTING GUIDE →</span>
+                <div class="guide-link">EXPLORE PLANTING GUIDE →</div>
             </div>
         </div>
-        <div class="product-card" onclick="openGuide('lime')">
-            <img src="images/dehi.jpeg" alt="Lime">
-            <div class="product-card-info">
+        <div class="card" onclick="openGuide('lime')">
+            <div class="card-img-wrap"><img src="images/dehi.jpeg" alt="Lime"></div>
+            <div class="card-body">
                 <h3>Lime Plants</h3>
-                <span style="color: var(--accent-green); font-size: 11px; font-weight: bold;">VIEW PLANTING GUIDE →</span>
+                <div class="guide-link">EXPLORE PLANTING GUIDE →</div>
             </div>
         </div>
     </div>
 </section>
 
 <section class="feedback-section">
-    <h2>Customer Feedback</h2>
     <div class="feedback-container">
         <div id="feedbackSlider" class="feedback-slider"></div>
     </div>
 </section>
 
-<section id="contact" class="contact-compact">
-    <div class="contact-info-compact">
-        <h2 style="color: #fff; font-size: 22px; margin-bottom: 20px;">Contact & Location</h2>
-        <div style="font-size: 14px; line-height: 2.5; opacity: 0.9;">
+<section class="contact-wrap">
+    <div class="contact-info">
+        <h2 style="font-size: 2rem; margin-bottom: 20px;">Visit Our Garden</h2>
+        <p style="opacity: 0.8; margin-bottom: 40px;">පාරිභෝගික ඔබට හොඳම සේවාවක් ලබා දීමට අප කැපවී සිටින්නෙමු.</p>
+        <div style="line-height: 2.5;">
             <p>📍 Dematagolla, Wellawa, Kurunegala</p>
             <p>📞 +94 72 778 2588</p>
-            <p>📧 info@ceylonagro.lk</p>
         </div>
-        <a href="https://www.google.com/maps?q=7.555389,80.388361" target="_blank" 
-           style="display: inline-block; margin-top: 30px; color: white; border: 1px solid rgba(255,255,255,0.4); 
-           padding: 12px 20px; text-decoration: none; font-size: 12px; border-radius: 8px; font-weight: bold;">
-           OPEN IN GOOGLE MAPS
+        <a href="https://maps.google.com/?q=7.555389,80.388361" target="_blank" 
+           style="display:inline-block; margin-top:40px; background:white; color:var(--primary); padding:15px 30px; border-radius:15px; text-decoration:none; font-weight:800; font-size:12px;">
+           GET DIRECTIONS
         </a>
     </div>
-    <div class="map-compact">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3954.2123!2d80.388361!3d7.555389!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zN8KwMzMnMTkuNCJOIDgwwrAyMycxOC4xIkU!5e0!3m2!1sen!2slk!4v1700000000000"></iframe>
+    <div class="contact-map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1194.5771!2d80.388361!3d7.555389!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zN8KwMzMnMTkuNCJOIDgwwrAyMycxOC4xIkU!5e0!3m2!1sen!2slk!4v1700000000000" 
+        style="width:100%; height:100%; border:none;"></iframe>
     </div>
 </section>
 
 <div id="guideModal" class="modal">
     <div class="modal-content">
-        <span class="close-btn" onclick="closeGuide()">×</span>
-        <h3 id="guideTitle" style="color: var(--accent-green); margin-bottom: 20px; text-align: center;"></h3>
+        <span style="position:absolute; right:30px; top:20px; font-size:40px; cursor:pointer;" onclick="closeGuide()">×</span>
+        <h2 id="guideTitle" style="color:var(--primary); margin-bottom:30px;"></h2>
         <div id="guideBody"></div>
-        <button onclick="closeGuide()" style="width:100%; padding:15px; background:var(--accent-green); color:white; border:none; border-radius:12px; margin-top:10px; cursor:pointer; font-weight:bold;">CLOSE</button>
     </div>
 </div>
 
-<footer style="padding: 40px; text-align: center; font-size: 12px; color: #999;">
-    <p>© 2026 CEYLONAGRO. ALL RIGHTS RESERVED.</p>
-</footer>
-
 <script>
     const guides = {
-        hamban: { title: "හම්බන් පුවක් සිටුවීමේ උපදෙස්", content: [
-            { h: "වළ කැපීම", p: "අඩි 2x2 ප්‍රමාණයේ වළක් කපා කොම්පෝස්ට් පුරවන්න." },
-            { h: "සත්කාරය", p: "මුල් මාස 3 පැළයට සෙවන ලබා දීම අත්‍යවශ්‍ය වේ." }
-        ]},
-        rata: { title: "රට පුවක් සිටුවීමේ උපදෙස්", content: [
-            { h: "පරතරය", p: "ගස් දෙකක් අතර අඩි 8ක පරතරයක් තැබීම සුදුසුයි." }
-        ]},
-        pepper: { title: "ගම්මිරිස් වගාව", content: [
-            { h: "ආධාරකය", p: "පැළය සිටුවීමට පෙර ආධාරක කණුවක් සකස් කර ගන්න." }
-        ]},
-        lime: { title: "දෙහි පැළ නඩත්තුව", content: [
-            { h: "හිරු එළිය", p: "දිනකට පැය 6කවත් හිරු එළිය ලැබෙන තැනක් තෝරන්න." }
-        ]}
+        hamban: { title: "හම්බන් පුවක් - වගා මාර්ගෝපදේශය", steps: ["අඩි 2x2 වලක් කපා මතුපිට පස් සහ කොම්පෝස්ට් පුරවන්න.", "පැළය සිටුවා මුල් කාලයේ සෙවන සහ උදේ සවස ජලය ලබා දෙන්න."] },
+        rata: { title: "රට පුවක් - වගා මාර්ගෝපදේශය", steps: ["ගස් අතර අඩි 8 ක පරතරයක් තබා සිටුවන්න.", "පොහොර යෙදීමේදී කාබනික පොහොර වලට මුල් තැන දෙන්න."] },
+        pepper: { title: "ගම්මිරිස් වගාව", steps: ["ආධාරකයක් අසල සිටුවා වැල් ඇදීමට උදව් වන්න.", "වැල් බෙදීම වැඩි කිරීමට අග්‍රස්ථය කප්පාදු කරන්න."] },
+        lime: { title: "දෙහි වගාව", steps: ["පූර්ණ හිරු එළිය ලැබෙන ස්ථානයක සිටුවන්න.", "ලෙඩ රෝග පාලනයට කොහොඹ තෙල් භාවිතා කරන්න."] }
     };
 
     function openGuide(key) {
         const data = guides[key];
         document.getElementById('guideTitle').innerText = data.title;
-        let html = '';
-        data.content.forEach(item => {
-            html += `<div class="guide-section"><h4>${item.h}</h4><p>${item.p}</p></div>`;
-        });
-        document.getElementById('guideBody').innerHTML = html;
+        document.getElementById('guideBody').innerHTML = data.steps.map(s => `<div class="guide-step">${s}</div>`).join('');
         document.getElementById('guideModal').style.display = "block";
     }
 
     function closeGuide() { document.getElementById('guideModal').style.display = "none"; }
 
-    // Feedback Logic
     function renderFeedbacks() {
-        let reviews = JSON.parse(localStorage.getItem('ceylonAgroReviews')) || [
-            { name: "Kamal Perera", comment: "ඉතාමත් හොඳ සේවාවක්! පැළ නිරෝගීව ලැබුණා." },
-            { name: "Sarah M.", comment: "Excellent plants and fast delivery." },
-            { name: "Nimal Silva", comment: "කුරුණෑගල තියෙන හොඳම පැළ නර්සරි එකක්." }
+        const reviews = [
+            { name: "Kamal Perera", text: "Excellent quality plants! Highly recommended." },
+            { name: "Nimal Silva", text: "Great service and healthy seedlings." }
         ];
-        const fbSlider = document.getElementById("feedbackSlider");
-        fbSlider.innerHTML = '';
-        reviews.forEach(rev => {
-            fbSlider.innerHTML += `<div class="feedback-slide"><div class="feedback-card"><h4>${rev.name}</h4><p style="font-size:14px; color:#555; font-style:italic; margin-top:10px;">"${rev.comment}"</p></div></div>`;
-        });
+        document.getElementById("feedbackSlider").innerHTML = reviews.map(r => `<div class="feedback-card"><p>"${r.text}"</p><strong>- ${r.name}</strong></div>`).join('');
     }
 
-    let currentIndex = 0;
-    function startAutoSlide() {
-        setInterval(() => {
-            const fbSlider = document.getElementById("feedbackSlider");
-            const slides = document.querySelectorAll('.feedback-slide');
-            if(slides.length > 0) {
-                currentIndex = (currentIndex + 1) % slides.length;
-                fbSlider.style.transform = `translateX(-${currentIndex * 100}%)`;
-            }
-        }, 4000);
-    }
+    let idx = 0;
+    setInterval(() => {
+        const slider = document.getElementById("feedbackSlider");
+        const cards = document.querySelectorAll(".feedback-card");
+        idx = (idx + 1) % cards.length;
+        slider.style.transform = `translateX(-${idx * 100}%)`;
+    }, 5000);
 
-    window.onload = () => { renderFeedbacks(); startAutoSlide(); };
+    window.onload = renderFeedbacks;
 </script>
 
 </body>
