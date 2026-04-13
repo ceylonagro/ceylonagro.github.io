@@ -3,232 +3,192 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CeylonAgro | Premium Plant Nursery</title>
+    <title>CeylonAgro | Seed to Harvest Guide</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #1a4332;
             --accent: #2ecc71;
-            --glass: rgba(255, 255, 255, 0.8);
-            --shadow: 0 20px 40px rgba(0,0,0,0.1);
+            --text: #2d3436;
+            --light-bg: #f8f9fa;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body { 
-            font-family: 'Plus Jakarta Sans', sans-serif; 
-            background: linear-gradient(-45deg, #f8f9fa, #e9ecef, #f1f3f5);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
-            color: #2d3436; overflow-x: hidden;
-        }
-
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--light-bg); color: var(--text); overflow-x: hidden; }
 
         /* Premium Nav */
         nav {
             display: flex; justify-content: space-between; align-items: center;
-            padding: 20px 8%; background: var(--glass); backdrop-filter: blur(15px);
-            position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid rgba(255,255,255,0.3);
+            padding: 20px 8%; background: rgba(255,255,255,0.9); backdrop-filter: blur(10px);
+            position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid #eee;
         }
-        .logo-text { font-size: 1.8rem; font-weight: 800; color: var(--primary); letter-spacing: -1px; }
-
-        /* Floating WhatsApp Button */
-        .whatsapp-float {
-            position: fixed; bottom: 30px; right: 30px; background: #25D366; color: white;
-            padding: 15px 30px; border-radius: 100px; text-decoration: none; font-weight: 700;
-            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4); z-index: 999; 
-            display: flex; align-items: center; gap: 10px; transition: 0.4s;
-        }
-        .whatsapp-float:hover { transform: translateY(-5px) scale(1.05); }
+        .logo { font-size: 1.6rem; font-weight: 800; color: var(--primary); }
 
         /* Hero Section */
         .hero {
-            height: 70vh; position: relative; display: flex; align-items: center; justify-content: center;
-            text-align: center; color: white; overflow: hidden;
+            height: 40vh; background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('images/family-garden-planting-vegetation-together.jpg');
+            background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; color: white; text-align: center;
         }
-        .hero-video-bg {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/family-garden-planting-vegetation-together.jpg');
-            background-size: cover; background-position: center; z-index: -1;
-        }
-        .hero h1 { font-size: clamp(2.5rem, 8vw, 4.5rem); font-weight: 800; margin-bottom: 10px; }
-        .hero p { font-size: 1.2rem; opacity: 0.9; letter-spacing: 2px; }
 
-        /* Premium Product Cards */
-        .section { padding: 100px 8%; text-align: center; }
-        .section-title { font-size: 2.5rem; margin-bottom: 50px; color: var(--primary); }
-        
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; }
+        /* Product Grid */
+        .section { padding: 80px 8%; text-align: center; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
         .card { 
-            background: white; border-radius: 24px; overflow: hidden; 
-            box-shadow: var(--shadow); transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative; border: 1px solid rgba(0,0,0,0.05);
+            background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            cursor: pointer; transition: 0.4s; border: 1px solid #eee;
         }
-        .card:hover { transform: translateY(-15px); }
-        .card-img-wrap { width: 100%; height: 350px; overflow: hidden; }
-        .card img { width: 100%; height: 100%; object-fit: cover; transition: 0.8s; }
-        .card:hover img { transform: scale(1.1); }
-        .card-body { padding: 30px; text-align: left; }
-        .card-body h3 { font-size: 1.4rem; margin-bottom: 10px; color: var(--primary); }
-        .guide-link { color: var(--accent); font-weight: 700; font-size: 0.9rem; text-decoration: none; display: flex; align-items: center; gap: 5px; cursor: pointer; }
+        .card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .card img { width: 100%; height: 250px; object-fit: cover; }
+        .card-info { padding: 25px; text-align: left; }
+        .btn-guide { background: var(--primary); color: white; padding: 10px 20px; border-radius: 10px; display: inline-block; margin-top: 15px; font-size: 12px; font-weight: 700; text-transform: uppercase; }
 
-        /* Feedback Slider */
-        .feedback-section { background: var(--primary); color: white; padding: 100px 8%; border-radius: 50px 50px 0 0; }
-        .feedback-container { max-width: 800px; margin: 0 auto; overflow: hidden; }
-        .feedback-slider { display: flex; transition: 0.6s ease-in-out; }
-        .feedback-card { min-width: 100%; padding: 40px; text-align: center; }
-        .feedback-card p { font-size: 1.5rem; font-style: italic; margin-bottom: 20px; }
+        /* Roadmap Modal */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 2000; overflow-y: auto; padding: 20px; }
+        .modal-content { background: white; max-width: 800px; margin: 20px auto; border-radius: 30px; padding: 40px; position: relative; }
+        .close-btn { position: absolute; right: 30px; top: 20px; font-size: 40px; cursor: pointer; color: #999; }
 
-        /* Contact Section */
-        .contact-wrap {
-            max-width: 1100px; margin: -50px auto 100px; background: white; 
-            display: flex; border-radius: 30px; overflow: hidden; box-shadow: var(--shadow);
-        }
-        .contact-info { flex: 1; padding: 60px; background: var(--primary); color: white; }
-        .contact-map { flex: 1.5; min-height: 450px; }
+        /* Timeline Style Guide */
+        .roadmap { margin-top: 30px; position: relative; }
+        .step { padding: 25px; border-left: 4px solid var(--accent); margin-left: 20px; position: relative; background: #f9f9f9; border-radius: 0 15px 15px 0; margin-bottom: 20px; }
+        .step::before { content: ''; position: absolute; left: -12px; top: 30px; width: 20px; height: 20px; background: var(--accent); border-radius: 50%; }
+        .step h4 { color: var(--primary); margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+        .step p { font-size: 14px; line-height: 1.6; color: #555; }
 
-        /* Modal Guide */
-        .modal { 
-            display: none; position: fixed; top:0; left:0; width:100%; height:100%; 
-            background: rgba(0,0,0,0.9); backdrop-filter: blur(10px); z-index: 2000;
-        }
-        .modal-content { 
-            background: white; width: 90%; max-width: 650px; margin: 50px auto; 
-            padding: 40px; border-radius: 30px; position: relative;
-        }
-        .guide-step { background: #f8f9fa; padding: 20px; border-radius: 15px; margin-bottom: 15px; border-left: 5px solid var(--accent); }
+        /* Floating WhatsApp */
+        .wa-float { position: fixed; bottom: 30px; right: 30px; background: #25D366; color: white; padding: 15px 25px; border-radius: 50px; text-decoration: none; font-weight: 700; box-shadow: 0 10px 20px rgba(0,0,0,0.2); z-index: 1500; }
 
-        @media (max-width: 768px) {
-            .contact-wrap { flex-direction: column; margin: 20px; }
-            .contact-map { min-height: 300px; }
-        }
+        /* Feedback */
+        .feedback { background: var(--primary); color: white; padding: 80px 8%; text-align: center; border-radius: 40px 40px 0 0; }
+
+        /* Compact Map */
+        .contact-box { display: flex; flex-wrap: wrap; max-width: 1100px; margin: 60px auto; background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 15px 40px rgba(0,0,0,0.1); }
+        .contact-info { flex: 1; padding: 50px; background: var(--primary); color: white; }
+        .contact-map { flex: 1.5; min-height: 400px; }
+
+        @media (max-width: 768px) { .contact-box { flex-direction: column; } .contact-map { min-height: 300px; } }
     </style>
 </head>
 <body>
 
 <nav>
-    <div class="logo-text">CEYLONAGRO.</div>
-    <div style="font-size: 11px; font-weight: 600; color: var(--muted-text);">PREMIUM NURSERY</div>
+    <div class="logo">CEYLONAGRO.</div>
+    <div style="font-size: 12px; font-weight: 600;">PREMIUM SEEDLINGS</div>
 </nav>
 
-<a href="https://wa.me/94727782588" class="whatsapp-float" target="_blank">
-    <span>Connect on WhatsApp</span>
-</a>
+<a href="https://wa.me/94727782588" class="wa-float" target="_blank">Contact Expert 🌿</a>
 
 <section class="hero">
-    <div class="hero-video-bg"></div>
     <div>
-        <p>SINCE 2026</p>
-        <h1>Pure Nature. Premium Care.</h1>
+        <h1 style="font-size: 3rem;">From Seed to Harvest</h1>
+        <p>අපගේ පියවරෙන් පියවර වගා මග පෙන්වීම</p>
     </div>
 </section>
 
-<section class="section">
-    <h2 class="section-title">Exclusive Collection</h2>
+<section class="section" id="collection">
+    <h2 style="margin-bottom: 40px; font-size: 2rem;">අපගේ පැළ එකතුව</h2>
     <div class="grid">
-        <div class="card" onclick="openGuide('hamban')">
-            <div class="card-img-wrap"><img src="images/hamban ouwak.jpeg" alt="Puwak"></div>
-            <div class="card-body">
+        <div class="card" onclick="openRoadmap('hamban')">
+            <img src="images/hamban ouwak.jpeg" alt="Puwak">
+            <div class="card-info">
                 <h3>Hamban Puwak</h3>
-                <div class="guide-link">EXPLORE PLANTING GUIDE →</div>
+                <p style="font-size: 13px; color: #888;">Complete Growth Journey</p>
+                <div class="btn-guide">View Guide</div>
             </div>
         </div>
-        <div class="card" onclick="openGuide('rata')">
-            <div class="card-img-wrap"><img src="images/rata puwak.jpeg" alt="Puwak"></div>
-            <div class="card-body">
-                <h3>Rata Puwak</h3>
-                <div class="guide-link">EXPLORE PLANTING GUIDE →</div>
-            </div>
-        </div>
-        <div class="card" onclick="openGuide('pepper')">
-            <div class="card-img-wrap"><img src="images/Gammiris.jpeg" alt="Pepper"></div>
-            <div class="card-body">
+        <div class="card" onclick="openRoadmap('pepper')">
+            <img src="images/Gammiris.jpeg" alt="Pepper">
+            <div class="card-info">
                 <h3>Black Pepper</h3>
-                <div class="guide-link">EXPLORE PLANTING GUIDE →</div>
+                <p style="font-size: 13px; color: #888;">Complete Growth Journey</p>
+                <div class="btn-guide">View Guide</div>
             </div>
         </div>
-        <div class="card" onclick="openGuide('lime')">
-            <div class="card-img-wrap"><img src="images/dehi.jpeg" alt="Lime"></div>
-            <div class="card-body">
-                <h3>Lime Plants</h3>
-                <div class="guide-link">EXPLORE PLANTING GUIDE →</div>
+        <div class="card" onclick="openRoadmap('lime')">
+            <img src="images/dehi.jpeg" alt="Lime">
+            <div class="card-info">
+                <h3>Lime Plant</h3>
+                <p style="font-size: 13px; color: #888;">Complete Growth Journey</p>
+                <div class="btn-guide">View Guide</div>
             </div>
         </div>
     </div>
 </section>
 
-<section class="feedback-section">
-    <div class="feedback-container">
-        <div id="feedbackSlider" class="feedback-slider"></div>
-    </div>
-</section>
-
-<section class="contact-wrap">
-    <div class="contact-info">
-        <h2 style="font-size: 2rem; margin-bottom: 20px;">Visit Our Garden</h2>
-        <p style="opacity: 0.8; margin-bottom: 40px;">පාරිභෝගික ඔබට හොඳම සේවාවක් ලබා දීමට අප කැපවී සිටින්නෙමු.</p>
-        <div style="line-height: 2.5;">
-            <p>📍 Dematagolla, Wellawa, Kurunegala</p>
-            <p>📞 +94 72 778 2588</p>
-        </div>
-        <a href="https://maps.google.com/?q=7.555389,80.388361" target="_blank" 
-           style="display:inline-block; margin-top:40px; background:white; color:var(--primary); padding:15px 30px; border-radius:15px; text-decoration:none; font-weight:800; font-size:12px;">
-           GET DIRECTIONS
-        </a>
-    </div>
-    <div class="contact-map">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1194.5771!2d80.388361!3d7.555389!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zN8KwMzMnMTkuNCJOIDgwwrAyMycxOC4xIkU!5e0!3m2!1sen!2slk!4v1700000000000" 
-        style="width:100%; height:100%; border:none;"></iframe>
-    </div>
-</section>
-
-<div id="guideModal" class="modal">
+<div id="roadmapModal" class="modal">
     <div class="modal-content">
-        <span style="position:absolute; right:30px; top:20px; font-size:40px; cursor:pointer;" onclick="closeGuide()">×</span>
-        <h2 id="guideTitle" style="color:var(--primary); margin-bottom:30px;"></h2>
-        <div id="guideBody"></div>
+        <span class="close-btn" onclick="closeRoadmap()">×</span>
+        <h2 id="roadmapTitle" style="color: var(--primary); text-align: center;"></h2>
+        <div id="roadmapBody" class="roadmap"></div>
+        <button onclick="closeRoadmap()" style="width:100%; padding:15px; background:var(--primary); color:white; border:none; border-radius:15px; margin-top:30px; cursor:pointer; font-weight:700;">DONE</button>
     </div>
 </div>
 
+<section class="feedback">
+    <h2>Customer Experiences</h2>
+    <p style="margin-top: 20px; opacity: 0.8; font-style: italic;">"Healthy plants and professional advice. Highly recommended!"</p>
+    <p style="margin-top: 10px; font-weight: 700;">- Sunil Perera</p>
+</section>
+
+<section class="contact-box">
+    <div class="contact-info">
+        <h3>CeylonAgro Nursery</h3>
+        <p style="margin-top: 20px; font-size: 14px;">📍 Dematagolla, Wellawa, Kurunegala</p>
+        <p style="font-size: 14px;">📞 +94 72 778 2588</p>
+        <a href="https://maps.google.com/?cid=17805264190241637633&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQ6" target="_blank" style="color:white; display:block; margin-top:30px; text-decoration:underline;">Open Maps</a>
+    </div>
+    <div class="contact-map">
+        <iframe src="https://maps.google.com/?cid=17805264190241637633&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQ7" style="width:100%; height:100%; border:none;"></iframe>
+    </div>
+</section>
+
 <script>
-    const guides = {
-        hamban: { title: "හම්බන් පුවක් - වගා මාර්ගෝපදේශය", steps: ["අඩි 2x2 වලක් කපා මතුපිට පස් සහ කොම්පෝස්ට් පුරවන්න.", "පැළය සිටුවා මුල් කාලයේ සෙවන සහ උදේ සවස ජලය ලබා දෙන්න."] },
-        rata: { title: "රට පුවක් - වගා මාර්ගෝපදේශය", steps: ["ගස් අතර අඩි 8 ක පරතරයක් තබා සිටුවන්න.", "පොහොර යෙදීමේදී කාබනික පොහොර වලට මුල් තැන දෙන්න."] },
-        pepper: { title: "ගම්මිරිස් වගාව", steps: ["ආධාරකයක් අසල සිටුවා වැල් ඇදීමට උදව් වන්න.", "වැල් බෙදීම වැඩි කිරීමට අග්‍රස්ථය කප්පාදු කරන්න."] },
-        lime: { title: "දෙහි වගාව", steps: ["පූර්ණ හිරු එළිය ලැබෙන ස්ථානයක සිටුවන්න.", "ලෙඩ රෝග පාලනයට කොහොඹ තෙල් භාවිතා කරන්න."] }
+    const data = {
+        hamban: {
+            title: "හම්බන් පුවක්: පැළයේ සිට අස්වැන්න දක්වා",
+            steps: [
+                { h: "01. භූමිය සකස් කිරීම", p: "අඩි 2x2x2 වළක් කපා මතුපිට පස් සහ කොම්පෝස්ට් 1:1 අනුපාතයට පුරවන්න. දින 2ක් පස පදම් වීමට හරින්න." },
+                { h: "02. සිටුවීම", p: "පැළය මැදින් තබා පොලිතින් කවරය ප්‍රවේශමෙන් ඉවත් කරන්න. මුල් පද්ධතියට හානි නොවන සේ පස් පුරවා තද කරන්න." },
+                { h: "03. නඩත්තුව (වසර 1-3)", p: "උදේ/සවස ජලය දමන්න. සෑම මාස 6කට වරක් කාබනික පොහොර යොදන්න. පැළයට මඳ සෙවනක් ලබා දීම අත්‍යවශ්‍යයි." },
+                { h: "04. පලදාව (අස්වැන්න)", p: "වසර 5-6 කින් පළමු අස්වැන්න ලබා ගත හැක. පුවක් ගෙඩිය තද තැඹිලි පැහැ වූ පසු නෙළාගන්න." }
+            ]
+        },
+        pepper: {
+            title: "ගම්මිරිස්: වගා මාර්ගෝපදේශය",
+            steps: [
+                { h: "01. ආධාරක සකස් කිරීම", p: "පැළය සිටුවීමට පෙර ග්ලිරිසීඩියා හෝ කොන්ක්‍රීට් ආධාරකය සිටුවා සති 2ක් ගත වීමට හරින්න." },
+                { h: "02. වැල් පුහුණු කිරීම", p: "වැල් අඩි 1ක් පමණ වැඩුණු පසු ආධාරකයට තබා මෘදු ලෙස බඳින්න. මෙය සිරස් වර්ධනයට උදව් වේ." },
+                { h: "03. නඩත්තුව", p: "පාමුල ජලය රැඳීමට ඉඩ නොදෙන්න. අතු බෙදීම වැඩි කිරීමට වැල් කප්පාදු (Pruning) කරන්න." },
+                { h: "04. අස්වැන්න", p: "වසර 3කින් අස්වැන්න ඇරඹේ. කරල් වල ගෙඩි එකක් හෝ දෙකක් රතු වූ පසු සම්පූර්ණ කරලම නෙළාගන්න." }
+            ]
+        },
+        lime: {
+            title: "දෙහි: සිටුවීමේ සිට පලදාව දක්වා",
+            steps: [
+                { h: "01. ස්ථානය තෝරාගැනීම", p: "හොඳින් හිරු එළිය ලැබෙන, ජලය බැසයන උස් බිමක් තෝරාගන්න." },
+                { h: "02. සිටුවීම සහ පෝෂණය", p: "සිටුවන විට වළට මතුපිට පස් සමඟ දිරාපත් වූ ගොම පොහොර මිශ්‍ර කරන්න." },
+                { h: "03. පලදාව උත්තේජනය", p: "මල් පිපෙන කාලයට පෙර පස මඳක් වියළි වීමට හැර, පසුව ජලය සහ පොටෑසියම් වැඩි පොහොරක් ලබා දෙන්න." },
+                { h: "04. නෙළීම", p: "දෙහි ගෙඩිය දිලිසෙන කොළ පැහැයට හැරුණු පසු නෙළන්න. එවිට යුෂ වැඩියි." }
+            ]
+        }
     };
 
-    function openGuide(key) {
-        const data = guides[key];
-        document.getElementById('guideTitle').innerText = data.title;
-        document.getElementById('guideBody').innerHTML = data.steps.map(s => `<div class="guide-step">${s}</div>`).join('');
-        document.getElementById('guideModal').style.display = "block";
+    function openRoadmap(key) {
+        const item = data[key];
+        document.getElementById('roadmapTitle').innerText = item.title;
+        document.getElementById('roadmapBody').innerHTML = item.steps.map(s => `
+            <div class="step">
+                <h4>${s.h}</h4>
+                <p>${s.p}</p>
+            </div>
+        `).join('');
+        document.getElementById('roadmapModal').style.display = "block";
+        document.body.style.overflow = "hidden";
     }
 
-    function closeGuide() { document.getElementById('guideModal').style.display = "none"; }
-
-    function renderFeedbacks() {
-        const reviews = [
-            { name: "Kamal Perera", text: "Excellent quality plants! Highly recommended." },
-            { name: "Nimal Silva", text: "Great service and healthy seedlings." }
-        ];
-        document.getElementById("feedbackSlider").innerHTML = reviews.map(r => `<div class="feedback-card"><p>"${r.text}"</p><strong>- ${r.name}</strong></div>`).join('');
+    function closeRoadmap() {
+        document.getElementById('roadmapModal').style.display = "none";
+        document.body.style.overflow = "auto";
     }
-
-    let idx = 0;
-    setInterval(() => {
-        const slider = document.getElementById("feedbackSlider");
-        const cards = document.querySelectorAll(".feedback-card");
-        idx = (idx + 1) % cards.length;
-        slider.style.transform = `translateX(-${idx * 100}%)`;
-    }, 5000);
-
-    window.onload = renderFeedbacks;
 </script>
 
 </body>
